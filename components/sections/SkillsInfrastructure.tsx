@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Cloud, Container, GitBranch, Shield, Eye, Terminal, Server, Layers } from 'lucide-react'
+import { Cloud, Container, GitBranch, Shield, Eye, Terminal, Server, Layers, Award, ExternalLink } from 'lucide-react'
 import { useState } from 'react'
 
 interface Skill {
@@ -13,6 +13,15 @@ interface Skill {
   impact: string
   level: number
   dependencies: string[]
+}
+
+interface Certification {
+  id: string
+  name: string
+  issuer: string
+  year: number
+  credentialUrl: string
+  category: 'cloud' | 'monitoring' | 'devops'
 }
 
 const skills: Skill[] = [
@@ -125,6 +134,49 @@ const skills: Skill[] = [
     impact: 'Code collaboration and management',
     level: 85,
     dependencies: ['cicd'],
+  },
+]
+
+const certifications: Certification[] = [
+  {
+    id: 'cert-1',
+    name: 'AWS Certified Solutions Architect – Associate',
+    issuer: 'Amazon Web Services',
+    year: 2024,
+    credentialUrl: 'https://www.credly.com/badges/88dad0e1-fe64-4892-b8d8-44cc2b6911/public_url',
+    category: 'cloud',
+  },
+  {
+    id: 'cert-2',
+    name: 'Full Stack Observability Practitioner',
+    issuer: 'New Relic University',
+    year: 2024,
+    credentialUrl: 'https://credentials.newrelic.com/4daaeab2-303b-4590-8e55-30a72990067e',
+    category: 'monitoring',
+  },
+  {
+    id: 'cert-3',
+    name: 'AWS Academy Graduate - Cloud Foundations',
+    issuer: 'Amazon Web Services',
+    year: 2023,
+    credentialUrl: 'https://www.credly.com/badges/390cb832-ceda-4da7-9f27-e77b2b9b7dda/public_url',
+    category: 'cloud',
+  },
+  {
+    id: 'cert-4',
+    name: 'Introduction to Containers w/ Docker, Kubernetes & OpenShift',
+    issuer: 'IBM Skills Network',
+    year: 2023,
+    credentialUrl: 'https://coursera.org/share/956f74e9912bfb5e0ee2296dcbe094e1',
+    category: 'devops',
+  },
+  {
+    id: 'cert-5',
+    name: 'Continuous Integration and Continuous Delivery (CI/CD)',
+    issuer: 'IBM Skills Network',
+    year: 2023,
+    credentialUrl: 'https://coursera.org/share/7bb154635bfb65884fe4dc9946b7f69a',
+    category: 'devops',
   },
 ]
 
@@ -281,6 +333,50 @@ export function SkillsInfrastructure() {
             )
           })}
         </div>
+
+        {/* Certifications Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-16"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            <span className="glow-text">Certifications</span> & Training
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certifications.map((cert, index) => (
+              <motion.a
+                key={cert.id}
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 + index * 0.1 }}
+                className="card-devops group hover:border-neon-cyan cursor-pointer transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-neon-cyan bg-opacity-10 rounded-lg border border-neon-cyan flex-shrink-0">
+                    <Award className="w-8 h-8 text-neon-cyan" />
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-lg mb-2 group-hover:text-neon-cyan transition-colors line-clamp-2">
+                      {cert.name}
+                    </h3>
+                    <p className="text-sm text-gray-400 mb-2">{cert.issuer}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono text-neon-green">{cert.year}</span>
+                      <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-neon-cyan transition-colors" />
+                    </div>
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Additional Expertise */}
         <motion.div
