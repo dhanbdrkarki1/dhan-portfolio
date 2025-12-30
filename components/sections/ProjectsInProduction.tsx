@@ -100,10 +100,10 @@ export function ProjectsInProduction() {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">Projects</span> in Production
+            <span className="glow-text">Portfolio</span> Projects
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Personal projects showcasing DevOps automation, CI/CD pipelines, and infrastructure as code
+            Personal projects demonstrating DevOps practices and automation skills
           </p>
         </motion.div>
 
@@ -123,16 +123,16 @@ export function ProjectsInProduction() {
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-cyan font-mono mb-2">
-              99%
+              10+
             </div>
-            <div className="text-sm text-gray-400 uppercase">Avg Uptime</div>
+            <div className="text-sm text-gray-400 uppercase">Technologies</div>
           </div>
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-cyan font-mono mb-2">
-              500+
+              4
             </div>
-            <div className="text-sm text-gray-400 uppercase">Total Deploys</div>
+            <div className="text-sm text-gray-400 uppercase">GitHub Repos</div>
           </div>
           
           <div className="card-devops text-center">
