@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+  
+  /* DevOps Color System */
+  --devops-bg: #0a0e27;
+  --devops-surface: #111827;
+  --devops-border: #1f2937;
+  
+  /* Neon Accents */
+  --neon-cyan: #00f5ff;
+  --neon-blue: #0ea5e9;
+  --neon-green: #10b981;
+  --neon-purple: #a855f7;
+  --neon-yellow: #fbbf24;
+  
+  /* Status Colors */
+  --status-success: #22c55e;
+  --status-warning: #f59e0b;
+  --status-error: #ef4444;
+  --status-info: #3b82f6;
+}
+
+@layer base {
+  * {
+    @apply border-devops-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-devops-bg text-gray-100 font-sans antialiased;
+    background-image: 
+      linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+  
+  code, pre {
+    @apply font-mono;
+  }
+}
+
+@layer components {
+  .terminal-text {
+    @apply font-mono text-neon-green;
+  }
+  
+  .glow-text {
+    @apply text-neon-cyan;
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.5),
+                 0 0 20px rgba(0, 245, 255, 0.3);
+  }
+  
+  .card-devops {
+    @apply bg-devops-surface border border-devops-border rounded-lg p-6;
+    @apply backdrop-blur-sm bg-opacity-80;
+    @apply transition-all duration-300;
+  }
+  
+  .card-devops:hover {
+    @apply border-neon-cyan shadow-lg;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+  }
+  
+  .btn-primary {
+    @apply bg-neon-cyan text-devops-bg font-semibold px-6 py-3 rounded-lg;
+    @apply transition-all duration-300 hover:bg-neon-blue;
+    @apply hover:shadow-lg;
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+  }
+  
+  .btn-primary:hover {
+    box-shadow: 0 0 25px rgba(0, 245, 255, 0.5);
+  }
+  
+  .pipeline-stage {
+    @apply relative flex items-center justify-center;
+    @apply text-sm font-mono uppercase tracking-wider;
+    @apply transition-all duration-300;
+  }
+  
+  .pipeline-stage.active {
+    @apply text-neon-cyan;
+  }
+  
+  .pipeline-stage.completed {
+    @apply text-neon-green;
+  }
+  
+  .status-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full;
+    @apply text-xs font-mono uppercase tracking-wider;
+  }
+  
+  .status-badge.success {
+    @apply bg-status-success bg-opacity-20 text-status-success;
+    @apply border border-status-success border-opacity-50;
+  }
+  
+  .status-badge.warning {
+    @apply bg-status-warning bg-opacity-20 text-status-warning;
+    @apply border border-status-warning border-opacity-50;
+  }
+  
+  .status-badge.error {
+    @apply bg-status-error bg-opacity-20 text-status-error;
+    @apply border border-status-error border-opacity-50;
+  }
+  
+  .status-badge.info {
+    @apply bg-status-info bg-opacity-20 text-status-info;
+    @apply border border-status-info border-opacity-50;
+  }
+  
+  .metric-card {
+    @apply card-devops text-center;
+  }
+  
+  .metric-value {
+    @apply text-4xl md:text-5xl font-bold glow-text;
+    @apply font-mono tabular-nums;
+  }
+  
+  .metric-label {
+    @apply text-sm text-gray-400 uppercase tracking-wider mt-2;
+  }
+  
+  .grid-overlay {
+    @apply absolute inset-0 pointer-events-none;
+    background-image: 
+      linear-gradient(rgba(0, 245, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 245, 255, 0.05) 1px, transparent 1px);
+    background-size: 100px 100px;
+  }
+  
+  .scan-line {
+    @apply absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-neon-cyan to-transparent;
+    @apply animate-scan opacity-30 pointer-events-none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--devops-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-blue);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 245, 255, 0.3);
+  color: white;
+}
