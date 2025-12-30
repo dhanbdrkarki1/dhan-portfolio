@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
 const routes = [
@@ -14,10 +14,13 @@ const routes = [
 export function ScrollController() {
   const router = useRouter()
   const pathname = usePathname()
-  const [isScrolling, setIsScrolling] = useState(false)
+  const isNavigatingRef = useRef(false)
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  useEffect(() => {
     let ggTimeout: NodeJS.Timeout
     let ggPressed = false
 
@@ -27,30 +30,14 @@ export function ScrollController() {
     }
 
     const navigateToSection = (index: number) => {
-      if (index < 0 || index >= routes.length) return
-      setIsScrolling(true)
+      if (index < 0 || index >= routes.length || isNavigatingRef.current) return
+      
+      isNavigatingRef.current = true
       router.push(routes[index].path)
       
       setTimeout(() => {
-        setIsScrolling(false)
-      }, 800)
-    }
-
-    // Mouse wheel navigation
-    const handleWheel = (e: WheelEvent) => {
-      if (isScrolling) return
-
-      const atTop = window.scrollY === 0
-      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10
-      const currentIndex = getCurrentIndex()
-
-      if (e.deltaY > 0 && atBottom && currentIndex < routes.length - 1) {
-        e.preventDefault()
-        navigateToSection(currentIndex + 1)
-      } else if (e.deltaY < 0 && atTop && currentIndex > 0) {
-        e.preventDefault()
-        navigateToSection(currentIndex - 1)
-      }
+        isNavigatingRef.current = false
+      }, 300)
     }
 
     // Vim-style keyboard navigation
@@ -63,15 +50,25 @@ export function ScrollController() {
       const currentIndex = getCurrentIndex()
 
       // j or down arrow - next section
-      if ((e.key === 'j' || e.key === 'ArrowDown') && currentIndex < routes.length - 1) {
-        e.preventDefault()
-        navigateToSection(currentIndex + 1)
+      if (e.key === 'j' || e.key === 'ArrowDown') {
+        if (currentIndex < routes.length - 1) {
+          e.preventDefault()
+          e.stopPropagation()
+          navigateToSection(currentIndex + 1)
+        }
+        return
       }
+      
       // k or up arrow - previous section
-      else if ((e.key === 'k' || e.key === 'ArrowUp') && currentIndex > 0) {
-        e.preventDefault()
-        navigateToSection(currentIndex - 1)
+      if (e.key === 'k' || e.key === 'ArrowUp') {
+        if (currentIndex > 0) {
+          e.preventDefault()
+          e.stopPropagation()
+          navigateToSection(currentIndex - 1)
+        }
+        return
       }
+      
       // g g - go to first section
       else if (e.key === 'g') {
         if (ggPressed) {
@@ -116,16 +113,13 @@ export function ScrollController() {
       }
     }
 
-    window.addEventListener('wheel', handleWheel, { passive: false })
     window.addEventListener('keydown', handleKeyboard)
 
     return () => {
-      window.removeEventListener('wheel', handleWheel)
       window.removeEventListener('keydown', handleKeyboard)
-      clearTimeout(scrollTimeout)
       clearTimeout(ggTimeout)
     }
-  }, [pathname, isScrolling, router])
+  }, [pathname, router])
 
   return null
 }

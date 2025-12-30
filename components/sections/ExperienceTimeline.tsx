@@ -170,7 +170,7 @@ export function ExperienceTimeline() {
   const terminalLines = experiences
     .find(e => e.id === selectedExp)
     ?.achievements.map((achievement, idx) => ({
-      id: `log-${idx}`,
+      id: `${selectedExp}-log-${idx}`,
       text: achievement.text,
       type: 'success' as const,
     })) || []

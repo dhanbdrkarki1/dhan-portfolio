@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Terminal, Boxes, Rocket, Play, Settings } from 'lucide-react'
 
@@ -14,19 +15,21 @@ const stages = [
 ]
 
 export function PipelineNavigator() {
+  const pathname = usePathname()
   const [activeStage, setActiveStage] = useState('init')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    
-    // Detect current stage from pathname
-    const path = window.location.pathname
-    const stage = stages.find(s => s.path === path || path.startsWith(s.path + '/'))
+  }, [])
+
+  useEffect(() => {
+    // Update active stage whenever pathname changes
+    const stage = stages.find(s => s.path === pathname || pathname.startsWith(s.path + '/'))
     if (stage) {
       setActiveStage(stage.id)
     }
-  }, [])
+  }, [pathname])
 
   if (!mounted) return null
 

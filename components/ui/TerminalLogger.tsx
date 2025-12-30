@@ -20,12 +20,19 @@ export function TerminalLogger({ lines, autoScroll = true, className = '' }: Ter
   const [visibleLines, setVisibleLines] = useState<TerminalLine[]>([])
 
   useEffect(() => {
+    // Reset visible lines when lines change
+    setVisibleLines([])
+    
     // Simulate typing effect
-    lines.forEach((line, index) => {
+    const timeouts = lines.map((line, index) => 
       setTimeout(() => {
         setVisibleLines(prev => [...prev, line])
       }, index * 200)
-    })
+    )
+    
+    return () => {
+      timeouts.forEach(clearTimeout)
+    }
   }, [lines])
 
   const getLineColor = (type: TerminalLine['type']) => {

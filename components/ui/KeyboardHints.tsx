@@ -6,18 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export function KeyboardHints() {
   const [isOpen, setIsOpen] = useState(false)
-  const [showHint, setShowHint] = useState(false)
-
-  useEffect(() => {
-    // Show hint for first-time visitors after 3 seconds
-    const hasSeenHint = localStorage.getItem('keyboard-hints-seen')
-    if (!hasSeenHint) {
-      const timer = setTimeout(() => {
-        setShowHint(true)
-      }, 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [])
 
   useEffect(() => {
     const handleToggle = () => setIsOpen(prev => !prev)
@@ -25,41 +13,8 @@ export function KeyboardHints() {
     return () => window.removeEventListener('toggle-keyboard-hints', handleToggle)
   }, [])
 
-  const dismissHint = () => {
-    setShowHint(false)
-    localStorage.setItem('keyboard-hints-seen', 'true')
-  }
-
   return (
     <>
-      {/* Floating hint for first-time visitors */}
-      <AnimatePresence>
-        {showHint && !isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-24 right-8 z-40"
-          >
-            <div className="bg-neon-cyan bg-opacity-10 border border-neon-cyan rounded-lg p-4 backdrop-blur-sm relative">
-              <button
-                onClick={dismissHint}
-                className="absolute -top-2 -right-2 bg-devops-bg border border-neon-cyan rounded-full p-1 hover:bg-neon-cyan hover:bg-opacity-20 transition-colors"
-              >
-                <X className="w-3 h-3 text-neon-cyan" />
-              </button>
-              <div className="flex items-center gap-3">
-                <Keyboard className="w-5 h-5 text-neon-cyan" />
-                <div>
-                  <div className="text-sm font-semibold text-neon-cyan">Tip: Use keyboard navigation!</div>
-                  <div className="text-xs text-gray-400 mt-1">Press <kbd className="px-1 py-0.5 bg-devops-border rounded text-neon-cyan">?</kbd> for shortcuts</div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Keyboard shortcuts button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -127,17 +82,6 @@ export function KeyboardHints() {
                     <ShortcutItem shortcut="3" description="Go to Deploy" />
                     <ShortcutItem shortcut="4" description="Go to Run" />
                     <ShortcutItem shortcut="5" description="Go to Optimize" />
-                  </div>
-                </div>
-
-                {/* Mouse Navigation */}
-                <div className="md:col-span-2 pt-4 border-t border-devops-border">
-                  <h3 className="text-lg font-semibold text-neon-cyan mb-4 flex items-center gap-2">
-                    <span className="text-2xl">🖱️</span> Mouse Navigation
-                  </h3>
-                  <div className="space-y-2 text-sm text-gray-300">
-                    <p>• <strong className="text-neon-green">Scroll to bottom</strong> of current page, then continue scrolling to navigate to next section</p>
-                    <p>• <strong className="text-neon-green">Scroll to top</strong> of current page, then continue scrolling to navigate to previous section</p>
                   </div>
                 </div>
               </div>
