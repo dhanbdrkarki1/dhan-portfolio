@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { PipelineNavigator } from '@/components/navigation/PipelineNavigator'
+import { ScrollController } from '@/components/navigation/ScrollController'
+import { KeyboardHints } from '@/components/ui/KeyboardHints'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -50,6 +52,10 @@ export default function RootLayout({
           
           {/* Pipeline Navigator */}
           <PipelineNavigator />
+          
+          {/* Scroll & Keyboard Navigation */}
+          <ScrollController />
+          <KeyboardHints />
           
           {/* Main content */}
           <main className="relative z-10">

@@ -6,8 +6,6 @@ import { Terminal, Server, Cloud, Zap, MapPin, Clock, Award } from 'lucide-react
 import { useEffect, useState } from 'react'
 
 export function Hero() {
-  const [bootComplete, setBootComplete] = useState(false)
-  const [systemMessages, setSystemMessages] = useState<string[]>([])
   const [currentRole, setCurrentRole] = useState(0)
   const [currentTime, setCurrentTime] = useState('')
   const [terminalInput, setTerminalInput] = useState('')
@@ -19,25 +17,6 @@ export function Hero() {
     'CI/CD Automation Expert',
     'Infrastructure as Code Developer',
   ]
-
-  const bootSequence = [
-    'SYSTEM INIT...',
-    'Loading cloud modules... OK',
-    'Initializing containers... OK',
-    'Starting CI/CD pipelines... OK',
-    'System ready. Welcome!',
-  ]
-
-  useEffect(() => {
-    bootSequence.forEach((msg, index) => {
-      setTimeout(() => {
-        setSystemMessages(prev => [...prev, msg])
-        if (index === bootSequence.length - 1) {
-          setTimeout(() => setBootComplete(true), 500)
-        }
-      }, index * 300)
-    })
-  }, [])
 
   // Role typing animation
   useEffect(() => {
@@ -54,6 +33,7 @@ export function Hero() {
         timeZone: 'Asia/Kathmandu',
         hour: '2-digit',
         minute: '2-digit',
+        second: '2-digit',
         hour12: false,
       }).format(new Date())
       setCurrentTime(kathmanduTime)
@@ -106,30 +86,11 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            {/* System Boot */}
-            <div className="card-devops p-4 font-mono text-xs space-y-1 max-h-32 overflow-hidden">
-              {systemMessages.map((msg, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className={`${msg.includes('OK') ? 'text-status-success' : 'text-neon-cyan'}`}
-                >
-                  {msg}
-                </motion.div>
-              ))}
-            </div>
-
             {/* Main Headline */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: bootComplete ? 1 : 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-4"
-            >
+            <div className="space-y-4">
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center gap-2 text-gray-400 text-sm">
                   <MapPin className="w-4 h-4 text-neon-cyan" />
@@ -174,77 +135,16 @@ export function Hero() {
                   Explore Projects
                 </a>
               </div>
-            </motion.div>
-
-            {/* Tech Stack Icons */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: bootComplete ? 1 : 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap gap-4 pt-4"
-            >
-              {[
-                { icon: Cloud, label: 'AWS & Azure' },
-                { icon: Server, label: 'Kubernetes' },
-                { icon: Terminal, label: 'Terraform' },
-                { icon: Zap, label: 'CI/CD' },
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-2 px-4 py-2 bg-devops-surface border border-devops-border rounded-lg text-sm"
-                >
-                  <item.icon className="w-4 h-4 text-neon-cyan" />
-                  <span className="text-gray-300">{item.label}</span>
-                </div>
-              ))}
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Right: Live Metrics */}
+          {/* Right: Stats & Terminal */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: bootComplete ? 1 : 0, x: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="space-y-6"
           >
-            <h2 className="text-2xl font-bold text-center mb-8">
-              <span className="text-neon-cyan">Career</span> Highlights
-            </h2>
-
-            <div className="grid grid-cols-2 gap-4">
-              <MetricCounter
-                value={2.5}
-                suffix="+"
-                label="Years Experience"
-                duration={2.5}
-                decimals={1}
-              />
-              
-              <MetricCounter
-                value={500}
-                suffix="+"
-                label="Deployments"
-                duration={2.5}
-                decimals={0}
-              />
-              
-              <MetricCounter
-                value={15}
-                suffix="+"
-                label="Projects"
-                duration={2.5}
-                decimals={0}
-              />
-              
-              <MetricCounter
-                value={99}
-                suffix="%"
-                label="Uptime"
-                duration={2.5}
-                decimals={0}
-              />
-            </div>
-
             {/* Portfolio Stats */}
             <div className="card-devops space-y-3">
               <h3 className="font-mono text-sm uppercase tracking-wider text-neon-cyan">
