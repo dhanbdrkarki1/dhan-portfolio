@@ -12,10 +12,9 @@ export function Hero() {
   const bootSequence = [
     'SYSTEM INIT...',
     'Loading cloud modules... OK',
-    'Initializing Kubernetes clusters... OK',
+    'Initializing containers... OK',
     'Starting CI/CD pipelines... OK',
-    'Mounting infrastructure... OK',
-    'System ready. Uptime: 99.9%',
+    'System ready. Welcome!',
   ]
 
   useEffect(() => {
@@ -62,18 +61,16 @@ export function Hero() {
               className="space-y-4"
             >
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                <span className="glow-text">Automating</span>
+                <span className="glow-text">Building</span>
                 <br />
-                <span className="text-gray-100">Infrastructure.</span>
+                <span className="text-gray-100">Reliable</span>
                 <br />
-                <span className="glow-text">Scaling</span>
-                <br />
-                <span className="text-gray-100">Reliability.</span>
+                <span className="glow-text">Infrastructure</span>
               </h1>
 
               <p className="text-xl text-gray-400 max-w-2xl">
-                AWS-Certified DevOps Engineer building resilient cloud infrastructure, 
-                zero-downtime pipelines, and cost-optimized systems that scale.
+                DevOps Engineer from Kathmandu, Nepal, passionate about cloud infrastructure, 
+                containerization, and CI/CD automation. Focused on building scalable and efficient systems.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
@@ -121,38 +118,38 @@ export function Hero() {
             className="space-y-6"
           >
             <h2 className="text-2xl font-bold text-center mb-8">
-              <span className="text-neon-cyan">Live</span> System Metrics
+              <span className="text-neon-cyan">Career</span> Highlights
             </h2>
 
             <div className="grid grid-cols-2 gap-4">
               <MetricCounter
-                value={60}
-                suffix="%"
-                label="Cost Reduction"
-                duration={2.5}
-                decimals={0}
-              />
-              
-              <MetricCounter
-                value={99.9}
-                suffix="%"
-                label="SLA Uptime"
+                value={2.5}
+                suffix="+"
+                label="Years Experience"
                 duration={2.5}
                 decimals={1}
               />
               
               <MetricCounter
-                value={90}
-                suffix="%"
-                label="Build Time ↓"
+                value={500}
+                suffix="+"
+                label="Deployments"
                 duration={2.5}
                 decimals={0}
               />
               
               <MetricCounter
-                value={40}
+                value={15}
+                suffix="+"
+                label="Projects"
+                duration={2.5}
+                decimals={0}
+              />
+              
+              <MetricCounter
+                value={99}
                 suffix="%"
-                label="MTTR ↓"
+                label="Uptime"
                 duration={2.5}
                 decimals={0}
               />
@@ -172,20 +169,20 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Deployment Stats */}
+            {/* Quick Stats */}
             <div className="card-devops">
               <h3 className="font-mono text-sm uppercase tracking-wider text-neon-cyan mb-3">
-                Deployment Stats
+                Quick Stats
               </h3>
               
               <div className="grid grid-cols-2 gap-4 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-neon-green font-mono">2,847</div>
-                  <div className="text-xs text-gray-400 uppercase">Total Deploys</div>
+                  <div className="text-3xl font-bold text-neon-green font-mono">AWS</div>
+                  <div className="text-xs text-gray-400 uppercase">Primary Cloud</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-neon-green font-mono">0</div>
-                  <div className="text-xs text-gray-400 uppercase">Downtime Events</div>
+                  <div className="text-3xl font-bold text-neon-green font-mono">Docker</div>
+                  <div className="text-xs text-gray-400 uppercase">Containerization</div>
                 </div>
               </div>
             </div>

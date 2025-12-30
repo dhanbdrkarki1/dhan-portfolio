@@ -3,14 +3,13 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Terminal, Boxes, Rocket, Play, Eye, Settings } from 'lucide-react'
+import { Terminal, Boxes, Rocket, Play, Settings } from 'lucide-react'
 
 const stages = [
   { id: 'init', label: 'Init', icon: Terminal, path: '/' },
   { id: 'build', label: 'Build', icon: Boxes, path: '/build' },
   { id: 'deploy', label: 'Deploy', icon: Rocket, path: '/deploy' },
   { id: 'run', label: 'Run', icon: Play, path: '/run' },
-  { id: 'observe', label: 'Observe', icon: Eye, path: '/observe' },
   { id: 'optimize', label: 'Optimize', icon: Settings, path: '/optimize' },
 ]
 
@@ -38,7 +37,7 @@ export function PipelineNavigator() {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Terminal className="w-6 h-6 text-neon-cyan" />
-            <span className="font-mono font-bold text-lg glow-text">DevOps.sys</span>
+            <span className="font-mono font-bold text-lg glow-text">Dhan.dev</span>
           </div>
 
           {/* Pipeline Stages */}

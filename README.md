@@ -1,6 +1,13 @@
-# DevOps Engineer Portfolio
+# Dhan Bahadur Karki - DevOps Engineer Portfolio
 
-An interactive, system-oriented portfolio that feels like a real DevOps control center—featuring pipeline-style navigation, animated infrastructure visualizations, and metric-driven storytelling.
+An interactive, system-oriented portfolio featuring pipeline-style navigation, animated infrastructure visualizations, and metric-driven storytelling.
+
+## 👤 About
+
+**Dhan Bahadur Karki**  
+DevOps Engineer | Kathmandu, Nepal  
+📧 dhanbdrkarki111@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/dhanbdrkarki/) | [GitHub](https://github.com/dhanbdrkarki1)
 
 ## 🚀 Tech Stack
 

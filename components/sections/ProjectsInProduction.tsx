@@ -23,94 +23,63 @@ interface Project {
 const projects: Project[] = [
   {
     id: 'proj-1',
-    name: 'AWS ECS CI/CD Pipeline',
-    description: 'Automated deployment pipeline for containerized applications using ECS, Terraform, and GitHub Actions',
+    name: 'ECS CI/CD Pipeline with CloudFormation',
+    description: 'Complete CI/CD pipeline using AWS CodePipeline, CodeBuild, ECR, and ECS with CloudFormation templates. Automated Docker container deployment from GitHub with infrastructure as code.',
     status: 'running',
-    uptime: 99.9,
-    architecture: 'ECS Fargate + ALB + ECR + CloudWatch',
-    techStack: ['AWS ECS', 'Terraform', 'GitHub Actions', 'Docker', 'CloudWatch'],
+    uptime: 99,
+    architecture: 'CodePipeline + CodeBuild + ECR + ECS + CloudFormation',
+    techStack: ['AWS CodePipeline', 'CodeBuild', 'ECS', 'ECR', 'CloudFormation', 'Docker'],
     metrics: [
-      { label: 'Deploy Time', value: '4 min', icon: Gauge },
-      { label: 'Cost', value: '$120/mo', icon: DollarSign },
-      { label: 'Uptime', value: '99.9%', icon: CheckCircle },
+      { label: 'Automation', value: '100%', icon: CheckCircle },
+      { label: 'Deploy Time', value: '8 min', icon: Gauge },
+      { label: 'IaC Managed', value: 'Yes', icon: Server },
     ],
-    github: 'https://github.com',
+    github: 'https://github.com/dhanbdrkarki1/ecs-ci-cd-cloudformation',
   },
   {
     id: 'proj-2',
-    name: 'Kubernetes Auto-Scaling Platform',
-    description: 'EKS cluster with Karpenter auto-scaling, Helm charts, and Prometheus monitoring',
+    name: 'ECS Terraform and Pipeline',
+    description: 'Modular AWS infrastructure with Terraform for ECS (EC2 launch type). Implemented Blue/Green deployment using CodeDeploy with ACM, ALB, ASG, RDS, EC2, VPC, and CloudWatch.',
     status: 'running',
-    uptime: 99.95,
-    architecture: 'EKS + Karpenter + ALB Ingress + Prometheus',
-    techStack: ['AWS EKS', 'Kubernetes', 'Karpenter', 'Helm', 'Prometheus', 'Grafana'],
+    uptime: 99.5,
+    architecture: 'Terraform + ECS + CodeDeploy + RDS + ALB',
+    techStack: ['Terraform', 'ECS', 'CodeDeploy', 'RDS', 'ALB', 'CloudWatch', 'VPC'],
     metrics: [
-      { label: 'Nodes', value: '3-15', icon: Server },
-      { label: 'Cost', value: '$450/mo', icon: DollarSign },
-      { label: 'Uptime', value: '99.95%', icon: CheckCircle },
+      { label: 'Deployment', value: 'Blue/Green', icon: Server },
+      { label: 'Modules', value: '10+', icon: Gauge },
+      { label: 'Scalability', value: 'High', icon: CheckCircle },
     ],
-    github: 'https://github.com',
+    github: 'https://github.com/dhanbdrkarki1/ecs-codepipeline-terraform',
   },
   {
     id: 'proj-3',
-    name: 'Multi-Cloud Terraform Modules',
-    description: 'Reusable IaC modules for AWS and Azure with security scanning and automated testing',
+    name: 'Deploy LAMP Stack Website',
+    description: 'Automated deployment of Gym application using Ansible and Terraform, reducing manual configuration by 90%. Full infrastructure provisioning and application deployment automation.',
     status: 'deployed',
-    uptime: 100,
-    architecture: 'Terraform + Terragrunt + tfsec + Checkov',
-    techStack: ['Terraform', 'Terragrunt', 'AWS', 'Azure', 'tfsec', 'Checkov'],
+    uptime: 98,
+    architecture: 'Terraform + Ansible + LAMP Stack',
+    techStack: ['Terraform', 'Ansible', 'Apache', 'MySQL', 'PHP', 'Linux'],
     metrics: [
-      { label: 'Modules', value: '25+', icon: Server },
-      { label: 'Scans', value: 'Pass', icon: CheckCircle },
-      { label: 'Usage', value: '10 teams', icon: Gauge },
+      { label: 'Automation', value: '90%', icon: CheckCircle },
+      { label: 'Setup Time', value: '10 min', icon: Gauge },
+      { label: 'Config Mgmt', value: 'Ansible', icon: Server },
     ],
-    github: 'https://github.com',
+    github: 'https://github.com/dhanbdrkarki1/lamp-stack-ansible-terraform',
   },
   {
     id: 'proj-4',
-    name: 'Blue/Green Deployment System',
-    description: 'Zero-downtime deployment strategy with automated rollback and health checks',
-    status: 'running',
-    uptime: 99.8,
-    architecture: 'ECS + ALB + Target Groups + CodeDeploy',
-    techStack: ['AWS ECS', 'CodeDeploy', 'ALB', 'CloudWatch', 'SNS'],
-    metrics: [
-      { label: 'Deploys', value: '500+', icon: Gauge },
-      { label: 'Rollbacks', value: '0', icon: CheckCircle },
-      { label: 'Downtime', value: '0 min', icon: CheckCircle },
-    ],
-    github: 'https://github.com',
-    demo: 'https://demo.com',
-  },
-  {
-    id: 'proj-5',
-    name: 'Observability Stack',
-    description: 'Complete monitoring solution with Prometheus, Grafana, and alerting',
-    status: 'running',
-    uptime: 99.99,
-    architecture: 'Prometheus + Grafana + AlertManager + Loki',
-    techStack: ['Prometheus', 'Grafana', 'Loki', 'AlertManager', 'CloudWatch'],
-    metrics: [
-      { label: 'Metrics', value: '10K/s', icon: Gauge },
-      { label: 'Alerts', value: '50+', icon: Server },
-      { label: 'Uptime', value: '99.99%', icon: CheckCircle },
-    ],
-    demo: 'https://grafana.demo.com',
-  },
-  {
-    id: 'proj-6',
-    name: 'Automated Backup & DR',
-    description: 'Cross-region backup automation with disaster recovery testing',
+    name: 'BidMe - Online Auction',
+    description: 'Online auction and bidding platform with real-time bidding, secure transactions, mobile accessibility. Features dynamic search, messaging, and feedback systems for enhanced user experience.',
     status: 'deployed',
-    uptime: 100,
-    architecture: 'Lambda + S3 + RDS Snapshots + SNS',
-    techStack: ['AWS Lambda', 'S3', 'RDS', 'CloudWatch Events', 'SNS'],
+    uptime: 97,
+    architecture: 'Web Application + Database + Real-time Features',
+    techStack: ['Node.js', 'MongoDB', 'WebSocket', 'Express', 'React'],
     metrics: [
-      { label: 'Backups', value: 'Daily', icon: Server },
-      { label: 'RPO', value: '1 hour', icon: Gauge },
-      { label: 'RTO', value: '4 hours', icon: CheckCircle },
+      { label: 'Real-time', value: 'Yes', icon: CheckCircle },
+      { label: 'Features', value: '15+', icon: Gauge },
+      { label: 'Mobile Ready', value: 'Yes', icon: Server },
     ],
-    github: 'https://github.com',
+    github: 'https://github.com/dhanbdrkarki1/online-auction',
   },
 ]
 
@@ -131,10 +100,10 @@ export function ProjectsInProduction() {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">Services</span> in Production
+            <span className="glow-text">Projects</span> in Production
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Real-world infrastructure and automation projects running at scale
+            Personal projects showcasing DevOps automation, CI/CD pipelines, and infrastructure as code
           </p>
         </motion.div>
 
@@ -149,28 +118,28 @@ export function ProjectsInProduction() {
             <div className="text-3xl font-bold text-neon-green font-mono mb-2">
               {projects.length}
             </div>
-            <div className="text-sm text-gray-400 uppercase">Active Services</div>
+            <div className="text-sm text-gray-400 uppercase">Active Projects</div>
           </div>
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-cyan font-mono mb-2">
-              99.9%
+              99%
             </div>
             <div className="text-sm text-gray-400 uppercase">Avg Uptime</div>
           </div>
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-cyan font-mono mb-2">
-              2.8K
+              500+
             </div>
             <div className="text-sm text-gray-400 uppercase">Total Deploys</div>
           </div>
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-green font-mono mb-2">
-              0
+              2.5
             </div>
-            <div className="text-sm text-gray-400 uppercase">Incidents</div>
+            <div className="text-sm text-gray-400 uppercase">Years Exp</div>
           </div>
         </motion.div>
 

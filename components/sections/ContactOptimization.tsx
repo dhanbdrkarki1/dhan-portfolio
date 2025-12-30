@@ -219,20 +219,20 @@ export function ContactOptimization() {
               <h3 className="text-xl font-bold mb-4">Quick Connect</h3>
               <div className="space-y-3">
                 <a
-                  href="mailto:your.email@example.com"
+                  href="mailto:dhanbdrkarki111@gmail.com"
                   className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
                 >
                   <Mail className="w-5 h-5 text-neon-cyan" />
                   <div className="flex-1">
                     <div className="text-sm text-gray-400">Email</div>
                     <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      your.email@example.com
+                      dhanbdrkarki111@gmail.com
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/yourprofile"
+                  href="https://www.linkedin.com/in/dhanbdrkarki/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
@@ -241,13 +241,13 @@ export function ContactOptimization() {
                   <div className="flex-1">
                     <div className="text-sm text-gray-400">LinkedIn</div>
                     <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      /in/yourprofile
+                      /in/dhanbdrkarki
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/dhanbdrkarki1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
@@ -256,7 +256,22 @@ export function ContactOptimization() {
                   <div className="flex-1">
                     <div className="text-sm text-gray-400">GitHub</div>
                     <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      @yourusername
+                      @dhanbdrkarki1
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href="https://medium.com/@dhanbdrkarki111"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
+                >
+                  <FileText className="w-5 h-5 text-neon-cyan" />
+                  <div className="flex-1">
+                    <div className="text-sm text-gray-400">Medium Blog</div>
+                    <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
+                      @dhanbdrkarki111
                     </div>
                   </div>
                 </a>
