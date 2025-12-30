@@ -21,80 +21,110 @@ const skills: Skill[] = [
     name: 'AWS Cloud',
     category: 'cloud',
     icon: Cloud,
-    tools: ['EC2', 'S3', 'Lambda', 'RDS', 'VPC', 'CloudWatch', 'IAM'],
+    tools: ['EC2', 'ECS', 'EKS', 'S3', 'Lambda', 'RDS', 'VPC', 'CloudWatch', 'IAM', 'ALB', 'SNS', 'SQS'],
     impact: 'Building scalable cloud infrastructure',
-    level: 80,
+    level: 85,
     dependencies: ['terraform', 'docker'],
+  },
+  {
+    id: 'azure',
+    name: 'Azure Cloud',
+    category: 'cloud',
+    icon: Cloud,
+    tools: ['Azure VMs', 'Storage', 'Networking', 'Resource Groups', 'Cost Management'],
+    impact: 'Cross-cloud migration and management',
+    level: 70,
+    dependencies: ['terraform'],
+  },
+  {
+    id: 'kubernetes',
+    name: 'Kubernetes',
+    category: 'container',
+    icon: Container,
+    tools: ['EKS', 'ECS', 'Helm', 'Kustomize', 'Karpenter', 'HPA', 'Ingress Controllers'],
+    impact: 'Container orchestration at scale',
+    level: 80,
+    dependencies: ['docker', 'cicd'],
   },
   {
     id: 'docker',
     name: 'Docker',
     category: 'container',
     icon: Container,
-    tools: ['Docker', 'Docker Compose', 'Multi-stage builds', 'Containerization'],
-    impact: 'Containerizing applications efficiently',
+    tools: ['Docker', 'Docker Compose', 'Multi-stage builds', 'Alpine', 'ECR'],
+    impact: 'Containerizing and optimizing applications',
     level: 85,
     dependencies: ['cicd'],
   },
   {
     id: 'terraform',
-    name: 'Terraform',
+    name: 'Terraform & IaC',
     category: 'iac',
     icon: Layers,
-    tools: ['Terraform', 'HCL', 'State Management', 'Modules'],
-    impact: 'Infrastructure as Code implementation',
-    level: 80,
-    dependencies: ['aws'],
+    tools: ['Terraform', 'Terragrunt', 'CloudFormation', 'Packer', 'HCL', 'State Management'],
+    impact: 'Infrastructure as Code automation',
+    level: 85,
+    dependencies: ['aws', 'azure'],
   },
   {
     id: 'cicd',
     name: 'CI/CD Pipelines',
     category: 'cicd',
     icon: GitBranch,
-    tools: ['GitHub Actions', 'GitLab CI', 'Jenkins', 'Automation'],
-    impact: 'Automated deployment pipelines',
+    tools: ['Jenkins', 'GitHub Actions', 'CodePipeline', 'CodeBuild', 'CodeDeploy', 'GitLab CI'],
+    impact: 'Automated deployment workflows',
     level: 85,
     dependencies: ['docker', 'terraform'],
   },
   {
-    id: 'linux',
-    name: 'Linux & Scripting',
+    id: 'ansible',
+    name: 'Configuration Management',
     category: 'iac',
     icon: Terminal,
-    tools: ['Ubuntu', 'CentOS', 'Bash', 'Shell Scripting', 'Python'],
-    impact: 'System administration and automation',
-    level: 85,
+    tools: ['Ansible', 'Playbooks', 'Roles', 'Automation', 'Server Provisioning'],
+    impact: 'Automated server configuration',
+    level: 80,
     dependencies: [],
   },
   {
     id: 'monitoring',
-    name: 'Monitoring',
+    name: 'Monitoring & Logging',
     category: 'observability',
     icon: Eye,
-    tools: ['CloudWatch', 'Prometheus', 'Grafana', 'Logging'],
-    impact: 'System health and performance monitoring',
+    tools: ['Prometheus', 'Grafana', 'New Relic', 'CloudWatch', 'APM', 'Dashboards', 'Alerts'],
+    impact: 'Full-stack observability',
+    level: 80,
+    dependencies: ['aws', 'kubernetes'],
+  },
+  {
+    id: 'security',
+    name: 'Security & Testing',
+    category: 'security',
+    icon: Shield,
+    tools: ['tfsec', 'Checkov', 'SonarQube', 'Trivy', 'OWASP', 'Security Hub', 'IAM'],
+    impact: 'Security scanning and compliance',
     level: 75,
-    dependencies: ['aws'],
+    dependencies: ['terraform', 'cicd'],
+  },
+  {
+    id: 'scripting',
+    name: 'Scripting & Programming',
+    category: 'iac',
+    icon: Terminal,
+    tools: ['Python', 'Bash', 'Django', 'React', 'JavaScript', 'MySQL', 'PostgreSQL'],
+    impact: 'Automation and application development',
+    level: 80,
+    dependencies: [],
   },
   {
     id: 'git',
     name: 'Version Control',
     category: 'cicd',
     icon: GitBranch,
-    tools: ['Git', 'GitHub', 'GitLab', 'Branching Strategies'],
+    tools: ['Git', 'GitHub', 'GitLab', 'Branch Protection', 'Semantic Versioning'],
     impact: 'Code collaboration and management',
     level: 85,
     dependencies: ['cicd'],
-  },
-  {
-    id: 'security',
-    name: 'Security Best Practices',
-    category: 'security',
-    icon: Shield,
-    tools: ['IAM', 'Security Groups', 'SSL/TLS', 'Secrets Management'],
-    impact: 'Secure infrastructure implementation',
-    level: 75,
-    dependencies: ['terraform', 'aws'],
   },
 ]
 
@@ -135,10 +165,10 @@ export function SkillsInfrastructure() {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">Infrastructure</span> as Code
+            <span className="glow-text">Technical</span> Skills
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Technical expertise visualized as interconnected cloud services and dependencies
+            DevOps expertise across cloud platforms, automation, and infrastructure management
           </p>
         </motion.div>
 
@@ -266,25 +296,25 @@ export function SkillsInfrastructure() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <Server className="w-12 h-12 text-neon-cyan mx-auto mb-3" />
-              <h3 className="font-bold mb-2">High Availability</h3>
+              <h3 className="font-bold mb-2">Cost Optimization</h3>
               <p className="text-sm text-gray-400">
-                Multi-AZ deployments, load balancing, auto-scaling
+                Cloud cost reduction, rightsizing, lifecycle policies
               </p>
             </div>
             
             <div className="text-center">
               <GitBranch className="w-12 h-12 text-neon-green mx-auto mb-3" />
-              <h3 className="font-bold mb-2">GitOps</h3>
+              <h3 className="font-bold mb-2">Collaboration Tools</h3>
               <p className="text-sm text-gray-400">
-                Infrastructure as code, version-controlled deployments
+                Jira, Zoho, Slack, MS Teams, documentation
               </p>
             </div>
             
             <div className="text-center">
               <Shield className="w-12 h-12 text-status-error mx-auto mb-3" />
-              <h3 className="font-bold mb-2">Zero Trust Security</h3>
+              <h3 className="font-bold mb-2">Problem Solving</h3>
               <p className="text-sm text-gray-400">
-                IAM policies, network segmentation, compliance
+                Analytical thinking, troubleshooting, optimization
               </p>
             </div>
           </div>
