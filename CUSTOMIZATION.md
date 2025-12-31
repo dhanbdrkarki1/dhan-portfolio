@@ -1,399 +1,256 @@
-# Customization Guide
+# Portfolio Customization Guide
 
-This guide helps you customize the portfolio with your own information and branding.
+This portfolio is fully customizable through a centralized data file. You can update all content without modifying any component code.
 
-## 📝 Personal Information
+## Quick Start
 
-### 1. Update Contact Details
+All portfolio content is managed in a single file:
 
-**File:** [components/sections/ContactOptimization.tsx](components/sections/ContactOptimization.tsx)
-
-```tsx
-// Line 235-280: Update these links
-<a href="mailto:YOUR_EMAIL@example.com">
-<a href="https://linkedin.com/in/YOUR_PROFILE">
-<a href="https://github.com/YOUR_USERNAME">
+```
+data/resume.ts
 ```
 
-### 2. Update Metadata
+Simply edit this file to update your portfolio information. Changes will automatically reflect across all pages.
 
-**File:** [app/layout.tsx](app/layout.tsx)
+## Data Structure
 
-```tsx
-// Line 17-30: Update SEO metadata
-export const metadata: Metadata = {
-  title: 'Your Name | DevOps Engineer Portfolio',
-  description: 'Your custom description',
-  authors: [{ name: 'Your Name' }],
-  // ... update other fields
-};
-```
+### 1. Personal Information
 
-### 3. Update Hero Section
-
-**File:** [components/sections/Hero.tsx](components/sections/Hero.tsx)
-
-```tsx
-// Line 52-58: Update headline
-<h1>
-  <span className="glow-text">Your</span>
-  <span className="text-gray-100">Custom</span>
-  <span className="glow-text">Tagline</span>
-</h1>
-
-// Line 60-64: Update description
-<p>Your custom bio and expertise</p>
-```
-
-## 🎨 Design Customization
-
-### 1. Colors
-
-**File:** [tailwind.config.js](tailwind.config.js)
-
-```js
-// Line 11-24: Update color palette
-colors: {
-  'devops-bg': '#0a0e27',        // Background
-  'devops-surface': '#111827',    // Cards
-  'devops-border': '#1f2937',     // Borders
-
-  'neon-cyan': '#00f5ff',         // Primary accent
-  'neon-blue': '#0ea5e9',         // Secondary accent
-  'neon-green': '#10b981',        // Success
-  'neon-purple': '#a855f7',       // Tertiary
+```typescript
+personal: {
+  name: "Your Name",
+  email: "your.email@example.com",
+  location: "Your City, Country",
+  timezone: "Your/Timezone",  // e.g., "Asia/Kathmandu"
+  bio: "Your bio text here",
+  roles: ["Role 1", "Role 2", "Role 3"],  // Animated on home page
+  linkedin: "https://linkedin.com/in/yourprofile",
+  github: "https://github.com/yourusername",
+  medium: "https://medium.com/@yourusername",
+  resume: "/resume.pdf",
+  stats: {
+    experience: "2.5+",
+    projects: "50+",
+    githubRepos: "4",
+    certifications: "5+"
+  }
 }
-```
-
-### 2. Fonts
-
-**File:** [app/globals.css](app/globals.css)
-
-```css
-/* Line 1: Update Google Fonts URL */
-@import url('https://fonts.googleapis.com/css2?family=YourFont:wght@300;400;700&display=swap');
-
-/* Line 4-5: Update font variables */
---font-sans: 'YourFont', system-ui, sans-serif;
---font-mono: 'YourMonoFont', 'Consolas', monospace;
-```
-
-### 3. Animations
-
-**File:** [tailwind.config.js](tailwind.config.js)
-
-```js
-// Line 33-38: Adjust animation speeds
-animation: {
-  'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-  'glow': 'glow 2s ease-in-out infinite alternate',
-  'scan': 'scan 8s linear infinite',
-}
-```
-
-## 📊 Content Updates
-
-### 1. Skills & Technologies
-
-**File:** [components/sections/SkillsInfrastructure.tsx](components/sections/SkillsInfrastructure.tsx)
-
-```tsx
-// Line 19-100: Update skills array
-const skills: Skill[] = [
-  {
-    id: 'your-skill',
-    name: 'Your Technology',
-    category: 'cloud', // or container, cicd, iac, observability, security
-    icon: YourIcon, // from lucide-react
-    tools: ['Tool1', 'Tool2', 'Tool3'],
-    impact: 'Your impact statement',
-    level: 95, // 0-100
-    dependencies: ['skill-id-1', 'skill-id-2'],
-  },
-  // Add more skills
-];
 ```
 
 ### 2. Work Experience
 
-**File:** [components/sections/ExperienceTimeline.tsx](components/sections/ExperienceTimeline.tsx)
+Add or modify your work history in the `experiences` array:
 
-```tsx
-// Line 18-100: Update experiences array
-const experiences: Experience[] = [
-  {
-    id: 'exp-1',
-    role: 'Your Job Title',
-    company: 'Company Name',
-    period: '2023 - Present',
-    location: 'Remote',
-    type: 'optimization', // feature, optimization, migration, security
-    commitHash: 'a3f7d2e', // random hash
-    technologies: ['Tech1', 'Tech2', 'Tech3'],
-    achievements: [
-      {
-        text: 'Your achievement description',
-        metric: '50% improvement',
-        icon: YourIcon,
-      },
-    ],
-  },
-];
+```typescript
+{
+  id: 'exp-1',  // Unique identifier
+  role: 'Your Job Title',
+  company: 'Company Name',
+  period: 'Jan 2023 - Present',
+  location: 'City, Country',
+  type: 'feature',  // Options: 'feature', 'optimization', 'migration', 'security'
+  commitHash: 'a3f7d2e',  // Any git-style hash
+  technologies: ['Tech1', 'Tech2', 'Tech3'],
+  achievements: [
+    {
+      text: 'What you achieved',
+      metric: '50% faster',  // Optional metric
+      icon: TrendingUp,  // Import from lucide-react
+    }
+  ]
+}
 ```
+
+**Type Colors:**
+
+- `feature`: Cyan (new features)
+- `optimization`: Green (performance improvements)
+- `migration`: Purple (infrastructure changes)
+- `security`: Red (security enhancements)
 
 ### 3. Projects
 
-**File:** [components/sections/ProjectsInProduction.tsx](components/sections/ProjectsInProduction.tsx)
+Add your projects in the `projects` array:
 
-```tsx
-// Line 14-80: Update projects array
-const projects: Project[] = [
-  {
-    id: 'proj-1',
-    name: 'Your Project Name',
-    description: 'Project description',
-    status: 'running', // running, deployed, staging
-    uptime: 99.9,
-    architecture: 'Architecture description',
-    techStack: ['Tech1', 'Tech2'],
-    metrics: [{ label: 'Metric', value: '99%', icon: IconName }],
-    github: 'https://github.com/you/repo',
-    demo: 'https://demo.com',
-  },
-];
-```
-
-### 4. Blog Articles
-
-**File:** [components/sections/ObservabilityDashboard.tsx](components/sections/ObservabilityDashboard.tsx)
-
-```tsx
-// Line 14-80: Update articles array
-const articles: Article[] = [
-  {
-    id: 'art-1',
-    title: 'Your Article Title',
-    description: 'Article description',
-    category: 'architecture', // architecture, performance, incident, security
-    date: '2024-12-30',
-    readTime: '8 min',
-    metrics: [{ label: 'Metric', value: 'Value' }],
-  },
-];
-```
-
-## 🔧 Feature Customization
-
-### 1. Add New Section
-
-**Step 1:** Create component in `components/sections/`
-
-```tsx
-// components/sections/YourSection.tsx
-'use client';
-
-import { motion } from 'framer-motion';
-
-export function YourSection() {
-  return (
-    <section className="min-h-screen py-20 px-4">
-      <div className="max-w-7xl mx-auto">{/* Your content */}</div>
-    </section>
-  );
+```typescript
+{
+  id: 'proj-1',
+  name: 'Project Name',
+  description: 'Brief description of your project',
+  status: 'running',  // Options: 'running', 'deployed', 'staging'
+  uptime: 99,  // Uptime percentage
+  architecture: 'Tech Stack Summary',
+  techStack: ['Tech1', 'Tech2', 'Tech3'],
+  metrics: [
+    { label: 'Metric Name', value: '100%', icon: CheckCircle }
+  ],
+  github: 'https://github.com/username/repo',  // Optional
+  demo: 'https://demo-url.com'  // Optional
 }
 ```
 
-**Step 2:** Create page in `app/your-route/`
+### 4. Skills
 
-```tsx
-// app/your-route/page.tsx
-import { YourSection } from '@/components/sections/YourSection';
+Update your skills in the `skills` array:
 
-export default function YourPage() {
-  return (
-    <div className="relative pt-16">
-      <YourSection />
-    </div>
-  );
+```typescript
+{
+  id: 'aws',
+  name: 'AWS Cloud',
+  category: 'cloud',  // Options: 'cloud', 'container', 'cicd', 'iac', 'observability', 'security'
+  icon: Cloud,  // Import from lucide-react
+  tools: ['EC2', 'S3', 'Lambda'],
+  impact: 'What you use it for',
+  level: 85,  // Proficiency: 0-100
+  dependencies: ['terraform', 'docker']  // Related skill IDs
 }
 ```
 
-**Step 3:** Add to navigation
+**Skill Categories:**
 
-```tsx
-// components/navigation/PipelineNavigator.tsx
-// Line 8-14: Add to stages array
-const stages = [
-  // ... existing stages
-  {
-    id: 'your-stage',
-    label: 'Your Stage',
-    icon: YourIcon,
-    path: '/your-route',
-  },
-];
-```
+- `cloud`: Cloud platforms (AWS, Azure, GCP)
+- `container`: Container technologies (Docker, Kubernetes)
+- `cicd`: CI/CD tools (Jenkins, GitHub Actions)
+- `iac`: Infrastructure as Code (Terraform, Ansible)
+- `observability`: Monitoring tools (Prometheus, Grafana)
+- `security`: Security tools (tfsec, Trivy)
 
-### 2. Remove Navigation
+### 5. Certifications
 
-To use a simpler layout without the pipeline navigator:
+Add certifications in the `certifications` array:
 
-**File:** [app/layout.tsx](app/layout.tsx)
-
-```tsx
-// Line 46-47: Comment out or remove
-// <PipelineNavigator />
-```
-
-### 3. Contact Form Integration
-
-For a working contact form, integrate with a service:
-
-**Option 1: Formspree**
-
-```tsx
-<form action="https://formspree.io/f/YOUR_ID" method="POST">
-```
-
-**Option 2: Netlify Forms**
-
-```tsx
-<form name="contact" method="POST" data-netlify="true">
-```
-
-**Option 3: Custom API Route** (requires serverless function)
-
-## 🖼️ Assets
-
-### 1. Add Logo
-
-**File:** [components/navigation/PipelineNavigator.tsx](components/navigation/PipelineNavigator.tsx)
-
-```tsx
-// Line 51-54: Replace terminal icon with logo
-<div className="flex items-center gap-2">
-  <Image src="/logo.svg" alt="Logo" width={32} height={32} />
-  <span className="font-mono font-bold text-lg glow-text">Your Name</span>
-</div>
-```
-
-### 2. Add Favicon
-
-Place in `app/`:
-
-- `favicon.ico`
-- `icon.svg` or `icon.png`
-- `apple-icon.png`
-
-### 3. Add Resume PDF
-
-Place `resume.pdf` in `public/` directory.
-
-Update link in [components/sections/ContactOptimization.tsx](components/sections/ContactOptimization.tsx):
-
-```tsx
-// Line 280
-<a href="/resume.pdf" target="_blank">
-```
-
-## 📱 Responsive Design
-
-All components are already responsive. To adjust breakpoints:
-
-**File:** [tailwind.config.js](tailwind.config.js)
-
-```js
-// Add custom breakpoints
-screens: {
-  'xs': '475px',
-  'sm': '640px',
-  'md': '768px',
-  'lg': '1024px',
-  'xl': '1280px',
-  '2xl': '1536px',
+```typescript
+{
+  id: 'cert-1',
+  name: 'Certification Name',
+  issuer: 'Issuing Organization',
+  year: 2024,
+  credentialUrl: 'https://credential-url.com',
+  category: 'cloud'  // Options: 'cloud', 'monitoring', 'devops'
 }
 ```
 
-## 🎯 Analytics
+### 6. Services
 
-### Google Analytics
+Define what services you offer in the `services` array:
 
-1. Get tracking ID from Google Analytics
-2. Update metadata or add script in layout
-
-```tsx
-// app/layout.tsx
-<Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
-<Script id="google-analytics">
-  {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '${GA_ID}');
-  `}
-</Script>
-```
-
-### Cloudflare Web Analytics
-
-Add in layout:
-
-```tsx
-<Script
-  defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token": "YOUR_TOKEN"}'
-/>
-```
-
-## 🎨 Advanced Customization
-
-### Dark/Light Mode Toggle
-
-```tsx
-// Add theme provider and toggle button
-import { ThemeProvider } from 'next-themes';
-
-// Wrap app in layout.tsx
-<ThemeProvider attribute="class">{children}</ThemeProvider>;
-```
-
-### Custom Cursor
-
-```css
-/* app/globals.css */
-* {
-  cursor: url('/cursor.svg'), auto;
+```typescript
+{
+  id: 'service-1',
+  title: 'Service description',
+  category: 'cloud'  // For future categorization
 }
 ```
 
-### Sound Effects
+### 7. Terminal Commands
 
-```tsx
-// Add to interactions
-const playSound = () => {
-  new Audio('/sounds/click.mp3').play();
-};
+Customize the interactive terminal on the home page:
+
+```typescript
+{
+  command: 'skills',
+  description: 'View core technical competencies',
+  output: [
+    'Cloud: AWS, Azure',
+    'Containers: Docker, Kubernetes',
+    // Add more lines
+  ]
+}
 ```
 
----
+**Default Commands:**
 
-## 📚 Resources
+- `help`: Shows available commands
+- `skills`: Lists your technical skills
+- `projects`: Shows recent projects
+- `contact`: Displays contact information
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS](https://tailwindcss.com/docs)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Lucide Icons](https://lucide.dev/)
+## Available Icons
 
----
+Import icons from `lucide-react`:
 
-## 🆘 Need Help?
+```typescript
+import {
+  Cloud,
+  Container,
+  GitBranch,
+  Shield,
+  Eye,
+  Terminal,
+  Server,
+  Layers,
+  CheckCircle2,
+  TrendingDown,
+  TrendingUp,
+  Zap,
+  Award,
+  Gauge,
+  DollarSign,
+} from 'lucide-react';
+```
 
-If you need assistance with customization:
+Browse all available icons at: https://lucide.dev/icons
 
-1. Check the [README.md](README.md) for project structure
-2. Review component comments for inline documentation
-3. Open an issue on GitHub
-4. Reach out via contact form
+## Color Theme
 
-Happy customizing! 🚀
+The portfolio uses these color variables (defined in `globals.css`):
+
+- `neon-cyan`: #00F0FF (Primary accent)
+- `neon-green`: #39FF14 (Success states)
+- `neon-purple`: #BC13FE (Special highlights)
+- `neon-blue`: #0F52BA (Cloud services)
+- `status-error`: #FF4444 (Security/errors)
+- `status-warning`: #FFA500 (Warnings)
+- `status-success`: #39FF14 (Success)
+
+## Tips
+
+1. **Keep IDs Unique**: Every item needs a unique `id` field
+2. **Icon Imports**: Make sure to import all icons you use at the top of `data/resume.ts`
+3. **URLs**: Use absolute URLs for external links (starting with `https://`)
+4. **Metrics**: Keep metric strings short and punchy (e.g., "50% faster", "99% uptime")
+5. **Tech Stack**: Use well-known technology names for better recognition
+6. **Git Hashes**: Can be any 7-character alphanumeric string (doesn't need to be real)
+
+## Example Workflow
+
+To update your portfolio:
+
+1. Open `data/resume.ts`
+2. Find the section you want to update (personal, experiences, projects, etc.)
+3. Modify the values
+4. Save the file
+5. The changes will automatically appear in your portfolio
+
+No need to touch any component files!
+
+## Troubleshooting
+
+**Icons not showing?**
+
+- Make sure you've imported the icon at the top of `data/resume.ts`
+- Check the icon name is correct (case-sensitive)
+
+**TypeScript errors?**
+
+- Ensure all required fields are present
+- Check that arrays have proper types
+- Run `npm run build` to check for errors
+
+**Layout broken?**
+
+- Check for missing closing brackets `}` or commas `,`
+- Validate JSON structure with an editor
+
+## Advanced Customization
+
+For deeper customization (colors, layouts, animations), you'll need to modify:
+
+- `app/globals.css`: Global styles and color variables
+- `components/sections/*.tsx`: Individual page layouts
+- `components/navigation/*.tsx`: Navigation behavior
+- `components/ui/*.tsx`: UI component styles
+
+## Questions?
+
+If you need help customizing your portfolio, feel free to reach out or check the component files for implementation details.

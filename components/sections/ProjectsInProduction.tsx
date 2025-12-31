@@ -1,87 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, ExternalLink, Server, Gauge, DollarSign, CheckCircle } from 'lucide-react'
+import { Github, ExternalLink } from 'lucide-react'
+import { resumeData } from '@/data/resume'
 
-interface Project {
-  id: string
-  name: string
-  description: string
-  status: 'running' | 'deployed' | 'staging'
-  uptime: number
-  techStack: string[]
-  architecture: string
-  metrics: {
-    label: string
-    value: string
-    icon: any
-  }[]
-  github?: string
-  demo?: string
-}
-
-const projects: Project[] = [
-  {
-    id: 'proj-1',
-    name: 'ECS CI/CD Pipeline with CloudFormation',
-    description: 'Complete CI/CD pipeline using AWS CodePipeline, CodeBuild, ECR, and ECS with CloudFormation templates. Automated Docker container deployment from GitHub with infrastructure as code.',
-    status: 'running',
-    uptime: 99,
-    architecture: 'CodePipeline + CodeBuild + ECR + ECS + CloudFormation',
-    techStack: ['AWS CodePipeline', 'CodeBuild', 'ECS', 'ECR', 'CloudFormation', 'Docker'],
-    metrics: [
-      { label: 'Automation', value: '100%', icon: CheckCircle },
-      { label: 'Deploy Time', value: '8 min', icon: Gauge },
-      { label: 'IaC Managed', value: 'Yes', icon: Server },
-    ],
-    github: 'https://github.com/dhanbdrkarki1/ecs-ci-cd-cloudformation',
-  },
-  {
-    id: 'proj-2',
-    name: 'ECS Terraform and Pipeline',
-    description: 'Modular AWS infrastructure with Terraform for ECS (EC2 launch type). Implemented Blue/Green deployment using CodeDeploy with ACM, ALB, ASG, RDS, EC2, VPC, and CloudWatch.',
-    status: 'running',
-    uptime: 99.5,
-    architecture: 'Terraform + ECS + CodeDeploy + RDS + ALB',
-    techStack: ['Terraform', 'ECS', 'CodeDeploy', 'RDS', 'ALB', 'CloudWatch', 'VPC'],
-    metrics: [
-      { label: 'Deployment', value: 'Blue/Green', icon: Server },
-      { label: 'Modules', value: '10+', icon: Gauge },
-      { label: 'Scalability', value: 'High', icon: CheckCircle },
-    ],
-    github: 'https://github.com/dhanbdrkarki1/ecs-codepipeline-terraform',
-  },
-  {
-    id: 'proj-3',
-    name: 'Deploy LAMP Stack Website',
-    description: 'Automated deployment of Gym application using Ansible and Terraform, reducing manual configuration by 90%. Full infrastructure provisioning and application deployment automation.',
-    status: 'deployed',
-    uptime: 98,
-    architecture: 'Terraform + Ansible + LAMP Stack',
-    techStack: ['Terraform', 'Ansible', 'Apache', 'MySQL', 'PHP', 'Linux'],
-    metrics: [
-      { label: 'Automation', value: '90%', icon: CheckCircle },
-      { label: 'Setup Time', value: '10 min', icon: Gauge },
-      { label: 'Config Mgmt', value: 'Ansible', icon: Server },
-    ],
-    github: 'https://github.com/dhanbdrkarki1/lamp-stack-ansible-terraform',
-  },
-  {
-    id: 'proj-4',
-    name: 'BidMe - Online Auction',
-    description: 'Online auction and bidding platform with real-time bidding, secure transactions, mobile accessibility. Features dynamic search, messaging, and feedback systems for enhanced user experience.',
-    status: 'deployed',
-    uptime: 97,
-    architecture: 'Web Application + Database + Real-time Features',
-    techStack: ['Node.js', 'MongoDB', 'WebSocket', 'Express', 'React'],
-    metrics: [
-      { label: 'Real-time', value: 'Yes', icon: CheckCircle },
-      { label: 'Features', value: '15+', icon: Gauge },
-      { label: 'Mobile Ready', value: 'Yes', icon: Server },
-    ],
-    github: 'https://github.com/dhanbdrkarki1/online-auction',
-  },
-]
+const projects = resumeData.projects
 
 const statusColors = {
   running: 'text-status-success border-status-success',
@@ -130,7 +53,7 @@ export function ProjectsInProduction() {
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-cyan font-mono mb-2">
-              4
+              {resumeData.personal.stats.githubRepos}
             </div>
             <div className="text-sm text-gray-400 uppercase">GitHub Repos</div>
           </div>

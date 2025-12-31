@@ -1,9 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { MetricCounter } from '@/components/ui/MetricCounter'
 import { Terminal, Server, Cloud, Zap, MapPin, Clock, Award } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { resumeData } from '@/data/resume'
+
+const { personal, terminalCommands } = resumeData
 
 export function Hero() {
   const [currentRole, setCurrentRole] = useState(0)
@@ -11,17 +13,10 @@ export function Hero() {
   const [terminalInput, setTerminalInput] = useState('')
   const [terminalOutput, setTerminalOutput] = useState<string[]>(['Type "help" for available commands'])
 
-  const roles = [
-    'DevOps Engineer',
-    'Cloud Infrastructure Specialist',
-    'CI/CD Automation Expert',
-    'Infrastructure as Code Developer',
-  ]
-
   // Role typing animation
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentRole((prev) => (prev + 1) % roles.length)
+      setCurrentRole((prev) => (prev + 1) % personal.roles.length)
     }, 3000)
     return () => clearInterval(interval)
   }, [])
@@ -30,7 +25,7 @@ export function Hero() {
   useEffect(() => {
     const updateTime = () => {
       const kathmanduTime = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'Asia/Kathmandu',
+        timeZone: personal.timezone,
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
@@ -49,28 +44,17 @@ export function Hero() {
       const command = terminalInput.trim().toLowerCase()
       let response = ''
       
-      switch (command) {
-        case 'help':
-          response = 'Available commands: whoami, skills, experience, contact, clear'
-          break
-        case 'whoami':
-          response = 'Dhan Bahadur Karki - DevOps Engineer from Kathmandu, Nepal'
-          break
-        case 'skills':
-          response = 'AWS, Azure, Kubernetes, Docker, Terraform, CI/CD, Ansible, Python'
-          break
-        case 'experience':
-          response = '2.5 years | Progressive Labs, CropBytes, Digo Solutions'
-          break
-        case 'contact':
-          response = 'Email: dhanbdrkarki111@gmail.com | GitHub: @dhanbdrkarki1'
-          break
-        case 'clear':
-          setTerminalOutput([])
-          setTerminalInput('')
-          return
-        default:
-          response = `Command not found: ${command}. Type "help" for available commands.`
+      if (command === 'help') {
+        response = `Available commands: ${terminalCommands.map(cmd => cmd.command).join(', ')}, clear`
+      } else if (command === 'clear') {
+        setTerminalOutput([])
+        setTerminalInput('')
+        return
+      } else {
+        const foundCommand = terminalCommands.find(cmd => cmd.command === command)
+        response = foundCommand
+          ? foundCommand.response
+          : `Command not found: ${command}. Type "help" for available commands.`
       }
       
       setTerminalOutput(prev => [...prev, `$ ${terminalInput}`, response])
@@ -94,7 +78,7 @@ export function Hero() {
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center gap-2 text-gray-400 text-sm">
                   <MapPin className="w-4 h-4 text-neon-cyan" />
-                  <span>Kathmandu, Nepal</span>
+                  <span>{personal.location}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-400 text-sm">
                   <Clock className="w-4 h-4 text-neon-green" />
@@ -103,7 +87,7 @@ export function Hero() {
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                <span className="text-gray-100">Dhan Bahadur Karki</span>
+                <span className="text-gray-100">{personal.name}</span>
               </h1>
 
               <div className="h-12">
@@ -115,13 +99,12 @@ export function Hero() {
                   transition={{ duration: 0.5 }}
                   className="text-2xl font-bold glow-text"
                 >
-                  {roles[currentRole]}
+                  {personal.roles[currentRole]}
                 </motion.p>
               </div>
 
               <p className="text-xl text-gray-400 max-w-2xl">
-                Passionate about cloud infrastructure, containerization, and CI/CD automation. 
-                Focused on building scalable, efficient, and cost-optimized systems.
+                {personal.bio}
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">

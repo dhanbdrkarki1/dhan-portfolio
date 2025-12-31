@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion'
 import { Mail, Linkedin, Github, FileText, Terminal, Send } from 'lucide-react'
 import { useState } from 'react'
+import { resumeData } from '@/data/resume'
+
+const { personal, services } = resumeData
 
 export function ContactOptimization() {
   const [formData, setFormData] = useState({
@@ -219,20 +222,20 @@ export function ContactOptimization() {
               <h3 className="text-xl font-bold mb-4">Quick Connect</h3>
               <div className="space-y-3">
                 <a
-                  href="mailto:dhanbdrkarki111@gmail.com"
+                  href={`mailto:${personal.email}`}
                   className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
                 >
                   <Mail className="w-5 h-5 text-neon-cyan" />
                   <div className="flex-1">
                     <div className="text-sm text-gray-400">Email</div>
                     <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      dhanbdrkarki111@gmail.com
+                      {personal.email}
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/in/dhanbdrkarki/"
+                  href={personal.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
@@ -241,13 +244,13 @@ export function ContactOptimization() {
                   <div className="flex-1">
                     <div className="text-sm text-gray-400">LinkedIn</div>
                     <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      /in/dhanbdrkarki
+                      {personal.linkedin.split('/in/')[1]}
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="https://github.com/dhanbdrkarki1"
+                  href={personal.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
@@ -256,13 +259,13 @@ export function ContactOptimization() {
                   <div className="flex-1">
                     <div className="text-sm text-gray-400">GitHub</div>
                     <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      @dhanbdrkarki1
+                      @{personal.github.split('/').pop()}
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="https://medium.com/@dhanbdrkarki111"
+                  href={personal.medium}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
@@ -271,13 +274,13 @@ export function ContactOptimization() {
                   <div className="flex-1">
                     <div className="text-sm text-gray-400">Medium Blog</div>
                     <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      @dhanbdrkarki111
+                      @{personal.medium.split('/@')[1]}
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="/resume.pdf"
+                  href={personal.resume}
                   target="_blank"
                   className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
                 >
@@ -296,34 +299,12 @@ export function ContactOptimization() {
             <div className="card-devops">
               <h3 className="text-xl font-bold mb-4">What I Offer</h3>
               <ul className="space-y-3 text-sm text-gray-300">
-                <li className="flex items-start gap-2">
-                  <span className="text-neon-green mt-1">✓</span>
-                  <span>Cloud infrastructure design and optimization (AWS, Azure)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-neon-green mt-1">✓</span>
-                  <span>Kubernetes deployment and management (EKS, AKS)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-neon-green mt-1">✓</span>
-                  <span>CI/CD pipeline automation and optimization</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-neon-green mt-1">✓</span>
-                  <span>Infrastructure as Code (Terraform, CloudFormation)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-neon-green mt-1">✓</span>
-                  <span>Cost optimization and cloud spend management</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-neon-green mt-1">✓</span>
-                  <span>Security hardening and compliance</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-neon-green mt-1">✓</span>
-                  <span>Monitoring and observability setup</span>
-                </li>
+                {services.map((service) => (
+                  <li key={service.id} className="flex items-start gap-2">
+                    <span className="text-neon-green mt-1">✓</span>
+                    <span>{service.title}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
