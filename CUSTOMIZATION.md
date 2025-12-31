@@ -24,18 +24,62 @@ personal: {
   timezone: "Your/Timezone",  // e.g., "Asia/Kathmandu"
   bio: "Your bio text here",
   roles: ["Role 1", "Role 2", "Role 3"],  // Animated on home page
-  linkedin: "https://linkedin.com/in/yourprofile",
-  github: "https://github.com/yourusername",
-  medium: "https://medium.com/@yourusername",
-  resume: "/resume.pdf",
-  stats: {
-    experience: "2.5+",
-    projects: "50+",
-    githubRepos: "4",
-    certifications: "5+"
-  }
+  socialLinks: [
+    {
+      id: 'email',
+      label: 'Email',
+      url: 'mailto:your.email@example.com',
+      icon: 'mail',  // Options: 'mail', 'linkedin', 'github', 'medium', 'resume', 'custom'
+      displayText: 'your.email@example.com',
+    },
+    {
+      id: 'linkedin',
+      label: 'LinkedIn',
+      url: 'https://linkedin.com/in/yourprofile',
+      icon: 'linkedin',
+      displayText: '/in/yourprofile',
+    },
+    // Add more social links as needed
+  ],
+  stats: [
+    {
+      id: 'companies',
+      label: 'Companies',
+      value: 3,
+      icon: Server,  // Import from lucide-react
+      color: 'text-neon-cyan',
+    },
+    {
+      id: 'certifications',
+      label: 'Certifications',
+      value: 5,
+      icon: Award,
+      color: 'text-neon-green',
+    },
+    // Add, remove, or reorder stats as needed
+  ]
 }
 ```
+
+**Social Links Configuration:**
+
+- `id`: Unique identifier for the link
+- `label`: Display label (e.g., "Email", "LinkedIn")
+- `url`: Full URL (use `mailto:` for email, `https://` for websites)
+- `icon`: Icon type - 'mail', 'linkedin', 'github', 'medium', 'resume', or 'custom'
+- `displayText`: (Optional) Custom text to display instead of the URL
+
+You can add, remove, or reorder social links. The Quick Connect section will automatically update.
+
+**Portfolio Stats Configuration:**
+
+- `id`: Unique identifier for the stat
+- `label`: Display label (e.g., "Companies", "Projects")
+- `value`: Number or string value to display
+- `icon`: Lucide React icon component (import at top of file)
+- `color`: (Optional) Tailwind text color class (e.g., 'text-neon-cyan')
+
+You can add, remove, or reorder stats. They will appear in the Portfolio Overview section on the home page.
 
 ### 2. Work Experience
 

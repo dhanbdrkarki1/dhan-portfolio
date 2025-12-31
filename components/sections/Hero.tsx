@@ -135,10 +135,15 @@ export function Hero() {
               </h3>
               
               <div className="space-y-2 text-sm">
-                <StatItem icon={Server} label="Companies" value="3" color="text-neon-cyan" />
-                <StatItem icon={Award} label="Certifications" value="5" color="text-neon-green" />
-                <StatItem icon={Terminal} label="GitHub Repos" value="4" color="text-neon-purple" />
-                <StatItem icon={Cloud} label="Primary Cloud" value="AWS" color="text-neon-blue" />
+                {personal.stats.map((stat) => (
+                  <StatItem 
+                    key={stat.id}
+                    icon={stat.icon} 
+                    label={stat.label} 
+                    value={String(stat.value)} 
+                    color={stat.color || 'text-neon-cyan'} 
+                  />
+                ))}
               </div>
             </div>
 

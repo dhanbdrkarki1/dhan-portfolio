@@ -140,38 +140,6 @@ export function ExperienceTimeline() {
                     </div>
                   </div>
 
-                  {/* Achievements as Metrics */}
-                  <div className="grid md:grid-cols-2 gap-4 mb-6">
-                    {exp.achievements.map((achievement, idx) => {
-                      const Icon = achievement.icon
-                      return (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: idx * 0.1 }}
-                          className="card-devops"
-                        >
-                          <div className="flex items-start gap-3">
-                            <Icon className="w-5 h-5 text-neon-cyan flex-shrink-0 mt-1" />
-                            <div className="flex-1">
-                              <p className="text-sm text-gray-300 mb-2">
-                                {achievement.text}
-                              </p>
-                              {achievement.metric && (
-                                <div className="inline-flex items-center gap-2 px-3 py-1 bg-neon-cyan bg-opacity-10 rounded-full border border-neon-cyan border-opacity-30">
-                                  <span className="text-xs font-mono text-neon-cyan font-bold">
-                                    {achievement.metric}
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )
-                    })}
-                  </div>
-
                   {/* Terminal Log View */}
                   <TerminalLogger lines={terminalLines} />
                 </motion.div>

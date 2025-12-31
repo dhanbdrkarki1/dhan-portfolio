@@ -63,7 +63,7 @@ export function TerminalLogger({ lines, autoScroll = true, className = '' }: Ter
           <div className="w-3 h-3 rounded-full bg-status-warning" />
           <div className="w-3 h-3 rounded-full bg-status-success" />
         </div>
-        <span className="text-gray-400">terminal@devops-system</span>
+        <span className="text-gray-400">dhan@devops</span>
       </div>
       
       <div className="space-y-1 max-h-96 overflow-y-auto">

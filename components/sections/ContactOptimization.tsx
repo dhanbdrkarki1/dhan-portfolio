@@ -221,77 +221,33 @@ export function ContactOptimization() {
             <div className="card-devops">
               <h3 className="text-xl font-bold mb-4">Quick Connect</h3>
               <div className="space-y-3">
-                <a
-                  href={`mailto:${personal.email}`}
-                  className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
-                >
-                  <Mail className="w-5 h-5 text-neon-cyan" />
-                  <div className="flex-1">
-                    <div className="text-sm text-gray-400">Email</div>
-                    <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      {personal.email}
-                    </div>
-                  </div>
-                </a>
+                {personal.socialLinks.map((link) => {
+                  const IconComponent = 
+                    link.icon === 'mail' ? Mail :
+                    link.icon === 'linkedin' ? Linkedin :
+                    link.icon === 'github' ? Github :
+                    link.icon === 'medium' ? FileText :
+                    link.icon === 'resume' ? FileText :
+                    FileText
 
-                <a
-                  href={personal.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
-                >
-                  <Linkedin className="w-5 h-5 text-neon-cyan" />
-                  <div className="flex-1">
-                    <div className="text-sm text-gray-400">LinkedIn</div>
-                    <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      {personal.linkedin.split('/in/')[1]}
-                    </div>
-                  </div>
-                </a>
-
-                <a
-                  href={personal.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
-                >
-                  <Github className="w-5 h-5 text-neon-cyan" />
-                  <div className="flex-1">
-                    <div className="text-sm text-gray-400">GitHub</div>
-                    <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      @{personal.github.split('/').pop()}
-                    </div>
-                  </div>
-                </a>
-
-                <a
-                  href={personal.medium}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
-                >
-                  <FileText className="w-5 h-5 text-neon-cyan" />
-                  <div className="flex-1">
-                    <div className="text-sm text-gray-400">Medium Blog</div>
-                    <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      @{personal.medium.split('/@')[1]}
-                    </div>
-                  </div>
-                </a>
-
-                <a
-                  href={personal.resume}
-                  target="_blank"
-                  className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
-                >
-                  <FileText className="w-5 h-5 text-neon-cyan" />
-                  <div className="flex-1">
-                    <div className="text-sm text-gray-400">Resume</div>
-                    <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
-                      Download PDF
-                    </div>
-                  </div>
-                </a>
+                  return (
+                    <a
+                      key={link.id}
+                      href={link.url}
+                      target={link.url.startsWith('http') ? '_blank' : undefined}
+                      rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="flex items-center gap-3 p-3 bg-devops-bg hover:bg-neon-cyan hover:bg-opacity-10 border border-devops-border hover:border-neon-cyan rounded-lg transition-all group"
+                    >
+                      <IconComponent className="w-5 h-5 text-neon-cyan" />
+                      <div className="flex-1">
+                        <div className="text-sm text-gray-400">{link.label}</div>
+                        <div className="font-mono text-sm group-hover:text-neon-cyan transition-colors">
+                          {link.displayText || link.url}
+                        </div>
+                      </div>
+                    </a>
+                  )
+                })}
               </div>
             </div>
 

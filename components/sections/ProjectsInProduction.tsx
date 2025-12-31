@@ -53,7 +53,7 @@ export function ProjectsInProduction() {
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-cyan font-mono mb-2">
-              {resumeData.personal.stats.githubRepos}
+              {resumeData.personal.stats.find(s => s.id === 'repos')?.value || projects.length}
             </div>
             <div className="text-sm text-gray-400 uppercase">GitHub Repos</div>
           </div>

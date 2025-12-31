@@ -18,6 +18,14 @@ import {
 // TYPE DEFINITIONS
 // ============================================
 
+export interface SocialLink {
+  id: string
+  label: string
+  url: string
+  icon: 'mail' | 'linkedin' | 'github' | 'medium' | 'resume' | 'custom'
+  displayText?: string
+}
+
 export interface PersonalInfo {
   name: string
   roles: string[]
@@ -25,16 +33,14 @@ export interface PersonalInfo {
   timezone: string
   bio: string
   email: string
-  github: string
-  linkedin: string
-  medium: string
-  resumeUrl: string
-  stats: {
-    companies: number
-    certifications: number
-    githubRepos: number
-    primaryCloud: string
-  }
+  socialLinks: SocialLink[]
+  stats: Array<{
+    id: string
+    label: string
+    value: string | number
+    icon: any
+    color?: string
+  }>
 }
 
 export interface Experience {
@@ -119,16 +125,73 @@ export const resumeData = {
     timezone: 'Asia/Kathmandu',
     bio: 'Passionate about cloud infrastructure, containerization, and CI/CD automation. Focused on building scalable, efficient, and cost-optimized systems.',
     email: 'dhanbdrkarki111@gmail.com',
-    github: 'dhanbdrkarki1',
-    linkedin: 'dhanbdrkarki',
-    medium: '@dhanbdrkarki111',
-    resumeUrl: '/resume.pdf',
-    stats: {
-      companies: 3,
-      certifications: 5,
-      githubRepos: 4,
-      primaryCloud: 'AWS',
-    },
+    socialLinks: [
+      {
+        id: 'email',
+        label: 'Email',
+        url: 'mailto:dhanbdrkarki111@gmail.com',
+        icon: 'mail',
+        displayText: 'dhanbdrkarki111@gmail.com',
+      },
+      {
+        id: 'linkedin',
+        label: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/dhanbdrkarki/',
+        icon: 'linkedin',
+        displayText: '/in/dhanbdrkarki',
+      },
+      {
+        id: 'github',
+        label: 'GitHub',
+        url: 'https://github.com/dhanbdrkarki1',
+        icon: 'github',
+        displayText: '@dhanbdrkarki1',
+      },
+      {
+        id: 'medium',
+        label: 'Medium Blog',
+        url: 'https://dhanbdrkarki.medium.com/',
+        icon: 'medium',
+        displayText: '@dhanbdrkarki',
+      },
+      {
+        id: 'resume',
+        label: 'Resume',
+        url: '/resume.pdf',
+        icon: 'resume',
+        displayText: 'Download PDF',
+      },
+    ],
+    stats: [
+      {
+        id: 'companies',
+        label: 'Companies',
+        value: 3,
+        icon: Server,
+        color: 'text-neon-cyan',
+      },
+      {
+        id: 'certifications',
+        label: 'Certifications',
+        value: 5,
+        icon: Award,
+        color: 'text-neon-green',
+      },
+      {
+        id: 'repos',
+        label: 'GitHub Repos',
+        value: 4,
+        icon: Terminal,
+        color: 'text-neon-purple',
+      },
+      {
+        id: 'cloud',
+        label: 'Primary Cloud',
+        value: 'AWS',
+        icon: Cloud,
+        color: 'text-neon-blue',
+      }
+    ],
   } as PersonalInfo,
 
   // Work Experience
@@ -258,7 +321,7 @@ export const resumeData = {
           icon: TrendingUp,
         },
       ],
-    },
+    }
   ] as Experience[],
 
   // Projects
