@@ -1,4 +1,10 @@
 import { ProjectsInProduction } from '@/components/sections/ProjectsInProduction'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Production projects and infrastructure systems running at scale',
+}
 
 export default function RunPage() {
   return (
@@ -6,9 +12,4 @@ export default function RunPage() {
       <ProjectsInProduction />
     </div>
   )
-}
-
-export const metadata = {
-  title: 'Projects in Production | DevOps Portfolio',
-  description: 'Production projects and infrastructure systems running at scale',
 }

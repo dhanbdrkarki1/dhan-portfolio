@@ -1,4 +1,10 @@
 import { ExperienceTimeline } from '@/components/sections/ExperienceTimeline'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Experience',
+  description: 'Professional experience as CI/CD pipeline executions and infrastructure evolution',
+}
 
 export default function DeployPage() {
   return (
@@ -6,9 +12,4 @@ export default function DeployPage() {
       <ExperienceTimeline />
     </div>
   )
-}
-
-export const metadata = {
-  title: 'Experience & Deployments | DevOps Portfolio',
-  description: 'Professional experience as CI/CD pipeline executions and infrastructure evolution',
 }

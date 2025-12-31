@@ -18,7 +18,10 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Dhan Bahadur Karki | DevOps Engineer Portfolio',
+  title: {
+    default: 'Dhan | DevOps Engineer',
+    template: '%s | Dhan'
+  },
   description: 'DevOps Engineer from Kathmandu, Nepal specializing in cloud infrastructure, Docker, Terraform, and CI/CD automation. Building scalable and efficient systems.',
   keywords: ['DevOps', 'AWS', 'Docker', 'Terraform', 'CI/CD', 'Cloud Engineer', 'Nepal', 'Kathmandu', 'Dhan Bahadur Karki'],
   authors: [{ name: 'Dhan Bahadur Karki' }],

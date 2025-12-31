@@ -1,4 +1,10 @@
 import { SkillsInfrastructure } from '@/components/sections/SkillsInfrastructure'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Skills',
+  description: 'Technical skills visualized as cloud infrastructure and service dependencies',
+}
 
 export default function BuildPage() {
   return (
@@ -6,9 +12,4 @@ export default function BuildPage() {
       <SkillsInfrastructure />
     </div>
   )
-}
-
-export const metadata = {
-  title: 'Skills & Infrastructure | DevOps Portfolio',
-  description: 'Technical skills visualized as cloud infrastructure and service dependencies',
 }
