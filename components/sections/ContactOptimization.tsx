@@ -2,54 +2,75 @@
 
 import { motion } from 'framer-motion'
 import { Mail, Linkedin, Github, FileText, Terminal, Send } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 import { resumeData } from '@/data/resume'
 
 const { personal, services } = resumeData
 
 export function ContactOptimization() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: '',
-  })
-  const [status, setStatus] = useState<'idle' | 'configuring' | 'deployed'>('idle')
+  const [state, handleSubmit] = useForm("xvzgplgg")
   const [terminalOutput, setTerminalOutput] = useState<string[]>([])
+  const [formData, setFormData] = useState({ name: '', email: '' })
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('configuring')
-    setTerminalOutput([])
+  // Animate terminal output when form is submitting
+  useEffect(() => {
+    if (state.submitting && formData.name) {
+      setIsAnimating(true)
+      setTerminalOutput([])
+      const deploymentSteps = [
+        'Initializing configuration...',
+        `Setting up connection for ${formData.name}...`,
+        `Validating email: ${formData.email}...`,
+        'Checking deployment requirements...',
+        'Running pre-deployment tests...',
+        'All checks passed ✓',
+        'Deploying configuration to production...',
+        'Sending message to server...',
+      ]
 
-    const deploymentSteps = [
-      'Initializing configuration...',
-      `Setting up connection for ${formData.name}...`,
-      `Validating email: ${formData.email}...`,
-      'Checking deployment requirements...',
-      'Running pre-deployment tests...',
-      'All checks passed ✓',
-      'Deploying configuration to production...',
-      'Configuration deployed successfully! ✓',
-      `Message received from ${formData.company || 'user'}`,
-      'System ready for optimization.',
-    ]
-
-    for (let i = 0; i < deploymentSteps.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, 400))
-      setTerminalOutput(prev => [...prev, deploymentSteps[i]])
+      deploymentSteps.forEach((step, index) => {
+        setTimeout(() => {
+          setTerminalOutput(prev => [...prev, step])
+          if (index === deploymentSteps.length - 1) {
+            setIsAnimating(false)
+          }
+        }, index * 300)
+      })
     }
+  }, [state.submitting, formData])
 
-    setTimeout(() => {
-      setStatus('deployed')
-    }, 500)
+  // Show success message when form submission succeeds
+  useEffect(() => {
+    if (state.succeeded) {
+      setShowSuccessMessage(true)
+    }
+  }, [state.succeeded])
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const form = e.currentTarget
+    const data = new FormData(form)
+    setFormData({
+      name: data.get('name') as string,
+      email: data.get('email') as string,
+    })
+    handleSubmit(e)
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }))
+  const handleReset = () => {
+    // Reset all states
+    setTerminalOutput([])
+    setFormData({ name: '', email: '' })
+    setIsAnimating(false)
+    setShowSuccessMessage(false)
+    
+    // Reset form fields
+    if (formRef.current) {
+      formRef.current.reset()
+    }
   }
 
   return (
@@ -82,8 +103,8 @@ export function ContactOptimization() {
                 <h2 className="text-xl font-bold font-mono">CONFIG_UPDATE.yml</h2>
               </div>
 
-              {status === 'idle' && (
-                <form onSubmit={handleSubmit} className="space-y-4">
+              {!showSuccessMessage && !isAnimating && (
+                <form ref={formRef} onSubmit={onSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-mono text-gray-400 mb-2">
                       name: <span className="text-status-error">*</span>
@@ -91,12 +112,12 @@ export function ContactOptimization() {
                     <input
                       type="text"
                       name="name"
-                      value={formData.name}
-                      onChange={handleChange}
                       required
-                      className="w-full bg-devops-bg border border-devops-border rounded-lg px-4 py-3 text-gray-200 focus:border-neon-cyan focus:outline-none transition-colors font-mono"
+                      disabled={state.submitting}
+                      className="w-full bg-devops-bg border border-devops-border rounded-lg px-4 py-3 text-gray-200 focus:border-neon-cyan focus:outline-none transition-colors font-mono disabled:opacity-50"
                       placeholder="John Doe"
                     />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
                   </div>
 
                   <div>
@@ -106,12 +127,12 @@ export function ContactOptimization() {
                     <input
                       type="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleChange}
                       required
-                      className="w-full bg-devops-bg border border-devops-border rounded-lg px-4 py-3 text-gray-200 focus:border-neon-cyan focus:outline-none transition-colors font-mono"
+                      disabled={state.submitting}
+                      className="w-full bg-devops-bg border border-devops-border rounded-lg px-4 py-3 text-gray-200 focus:border-neon-cyan focus:outline-none transition-colors font-mono disabled:opacity-50"
                       placeholder="john@company.com"
                     />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
                   </div>
 
                   <div>
@@ -121,9 +142,8 @@ export function ContactOptimization() {
                     <input
                       type="text"
                       name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full bg-devops-bg border border-devops-border rounded-lg px-4 py-3 text-gray-200 focus:border-neon-cyan focus:outline-none transition-colors font-mono"
+                      disabled={state.submitting}
+                      className="w-full bg-devops-bg border border-devops-border rounded-lg px-4 py-3 text-gray-200 focus:border-neon-cyan focus:outline-none transition-colors font-mono disabled:opacity-50"
                       placeholder="Acme Corp"
                     />
                   </div>
@@ -134,26 +154,27 @@ export function ContactOptimization() {
                     </label>
                     <textarea
                       name="message"
-                      value={formData.message}
-                      onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full bg-devops-bg border border-devops-border rounded-lg px-4 py-3 text-gray-200 focus:border-neon-cyan focus:outline-none transition-colors font-mono resize-none"
+                      disabled={state.submitting}
+                      className="w-full bg-devops-bg border border-devops-border rounded-lg px-4 py-3 text-gray-200 focus:border-neon-cyan focus:outline-none transition-colors font-mono resize-none disabled:opacity-50"
                       placeholder="Describe your infrastructure needs..."
                     />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full btn-primary flex items-center justify-center gap-2"
+                    disabled={state.submitting}
+                    className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-5 h-5" />
-                    Deploy Configuration
+                    {state.submitting ? 'Deploying...' : 'Deploy Configuration'}
                   </button>
                 </form>
               )}
 
-              {(status === 'configuring' || status === 'deployed') && (
+              {(isAnimating || showSuccessMessage) && (
                 <div className="font-mono text-sm space-y-1">
                   {terminalOutput.map((line, idx) => (
                     <motion.div
@@ -170,7 +191,7 @@ export function ContactOptimization() {
                     </motion.div>
                   ))}
                   
-                  {status === 'configuring' && (
+                  {isAnimating && !showSuccessMessage && (
                     <motion.div
                       className="flex items-center gap-2 text-neon-cyan mt-4"
                       initial={{ opacity: 0 }}
@@ -181,7 +202,7 @@ export function ContactOptimization() {
                     </motion.div>
                   )}
 
-                  {status === 'deployed' && (
+                  {showSuccessMessage && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -194,12 +215,8 @@ export function ContactOptimization() {
                         Your message has been received. I'll get back to you within 24 hours to discuss optimization strategies.
                       </p>
                       <button
-                        onClick={() => {
-                          setStatus('idle')
-                          setTerminalOutput([])
-                          setFormData({ name: '', email: '', company: '', message: '' })
-                        }}
-                        className="mt-4 px-4 py-2 bg-devops-bg border border-status-success text-status-success rounded-lg text-sm hover:bg-status-success hover:bg-opacity-10 transition-all"
+                        onClick={handleReset}
+                        className="mt-4 px-4 py-2 bg-neon-cyan text-devops-bg rounded-lg hover:bg-neon-blue transition-colors font-mono text-sm"
                       >
                         Send Another Message
                       </button>

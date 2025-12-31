@@ -120,7 +120,7 @@ portfolio/
 ```typescript
 personal: {
   name: "Dhan Bahadur Karki",
-  email: "dhanbdrkarki111@gmail.com",
+  email: "dhanbdr.work@gmail.com",
   location: "Kathmandu, Nepal",
   timezone: "Asia/Kathmandu",
   roles: ["DevOps Engineer", "Cloud Architect", "SRE"],
@@ -294,7 +294,7 @@ Contributions, issues, and feature requests are welcome!
 
 For questions or support:
 
-- Email: dhanbdrkarki111@gmail.com
+- Email: dhanbdr.work@gmail.com
 - LinkedIn: [linkedin.com/in/dhanbdrkarki](https://linkedin.com/in/dhanbdrkarki)
 - GitHub: [@dhanbdrkarki1](https://github.com/dhanbdrkarki1)
 

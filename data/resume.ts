@@ -124,14 +124,14 @@ export const resumeData = {
     location: 'Kathmandu, Nepal',
     timezone: 'Asia/Kathmandu',
     bio: 'Passionate about cloud infrastructure, containerization, and CI/CD automation. Focused on building scalable, efficient, and cost-optimized systems.',
-    email: 'dhanbdrkarki111@gmail.com',
+    email: 'dhanbdr.work@gmail.com',
     socialLinks: [
       {
         id: 'email',
         label: 'Email',
-        url: 'mailto:dhanbdrkarki111@gmail.com',
+        url: 'mailto:dhanbdr.work@gmail.com',
         icon: 'mail',
-        displayText: 'dhanbdrkarki111@gmail.com',
+        displayText: 'dhanbdr.work@gmail.com',
       },
       {
         id: 'linkedin',
@@ -157,7 +157,7 @@ export const resumeData = {
       {
         id: 'resume',
         label: 'Resume',
-        url: '/resume.pdf',
+        url: 'https://drive.google.com/uc?export=download&id=1dLs9LOnu-jSkmaLA6OVTY3zslUAAoYzB',
         icon: 'resume',
         displayText: 'Download PDF',
       },
@@ -601,7 +601,7 @@ export const resumeData = {
     },
     {
       command: 'contact',
-      response: 'Email: dhanbdrkarki111@gmail.com | GitHub: @dhanbdrkarki1',
+      response: 'Email: dhanbdr.work@gmail.com | GitHub: @dhanbdrkarki1',
     },
   ] as TerminalCommand[],
 }
