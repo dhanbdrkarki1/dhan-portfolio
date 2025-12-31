@@ -1,0 +1,11 @@
+# Static Assets
+
+Place your static files in this directory:
+
+- `favicon.ico` - Website favicon
+- `logo.svg` - Your logo (if using)
+- `resume.pdf` - Your resume for download
+- `og-image.png` - Open Graph image for social sharing (1200x630px)
+- `images/` - Folder for project screenshots, etc.
+
+These files will be served from the root path (e.g., `/resume.pdf`).

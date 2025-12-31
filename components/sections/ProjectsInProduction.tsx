@@ -1,118 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, ExternalLink, Server, Gauge, DollarSign, CheckCircle } from 'lucide-react'
+import { Github, ExternalLink } from 'lucide-react'
+import { resumeData } from '@/data/resume'
 
-interface Project {
-  id: string
-  name: string
-  description: string
-  status: 'running' | 'deployed' | 'staging'
-  uptime: number
-  techStack: string[]
-  architecture: string
-  metrics: {
-    label: string
-    value: string
-    icon: any
-  }[]
-  github?: string
-  demo?: string
-}
-
-const projects: Project[] = [
-  {
-    id: 'proj-1',
-    name: 'AWS ECS CI/CD Pipeline',
-    description: 'Automated deployment pipeline for containerized applications using ECS, Terraform, and GitHub Actions',
-    status: 'running',
-    uptime: 99.9,
-    architecture: 'ECS Fargate + ALB + ECR + CloudWatch',
-    techStack: ['AWS ECS', 'Terraform', 'GitHub Actions', 'Docker', 'CloudWatch'],
-    metrics: [
-      { label: 'Deploy Time', value: '4 min', icon: Gauge },
-      { label: 'Cost', value: '$120/mo', icon: DollarSign },
-      { label: 'Uptime', value: '99.9%', icon: CheckCircle },
-    ],
-    github: 'https://github.com',
-  },
-  {
-    id: 'proj-2',
-    name: 'Kubernetes Auto-Scaling Platform',
-    description: 'EKS cluster with Karpenter auto-scaling, Helm charts, and Prometheus monitoring',
-    status: 'running',
-    uptime: 99.95,
-    architecture: 'EKS + Karpenter + ALB Ingress + Prometheus',
-    techStack: ['AWS EKS', 'Kubernetes', 'Karpenter', 'Helm', 'Prometheus', 'Grafana'],
-    metrics: [
-      { label: 'Nodes', value: '3-15', icon: Server },
-      { label: 'Cost', value: '$450/mo', icon: DollarSign },
-      { label: 'Uptime', value: '99.95%', icon: CheckCircle },
-    ],
-    github: 'https://github.com',
-  },
-  {
-    id: 'proj-3',
-    name: 'Multi-Cloud Terraform Modules',
-    description: 'Reusable IaC modules for AWS and Azure with security scanning and automated testing',
-    status: 'deployed',
-    uptime: 100,
-    architecture: 'Terraform + Terragrunt + tfsec + Checkov',
-    techStack: ['Terraform', 'Terragrunt', 'AWS', 'Azure', 'tfsec', 'Checkov'],
-    metrics: [
-      { label: 'Modules', value: '25+', icon: Server },
-      { label: 'Scans', value: 'Pass', icon: CheckCircle },
-      { label: 'Usage', value: '10 teams', icon: Gauge },
-    ],
-    github: 'https://github.com',
-  },
-  {
-    id: 'proj-4',
-    name: 'Blue/Green Deployment System',
-    description: 'Zero-downtime deployment strategy with automated rollback and health checks',
-    status: 'running',
-    uptime: 99.8,
-    architecture: 'ECS + ALB + Target Groups + CodeDeploy',
-    techStack: ['AWS ECS', 'CodeDeploy', 'ALB', 'CloudWatch', 'SNS'],
-    metrics: [
-      { label: 'Deploys', value: '500+', icon: Gauge },
-      { label: 'Rollbacks', value: '0', icon: CheckCircle },
-      { label: 'Downtime', value: '0 min', icon: CheckCircle },
-    ],
-    github: 'https://github.com',
-    demo: 'https://demo.com',
-  },
-  {
-    id: 'proj-5',
-    name: 'Observability Stack',
-    description: 'Complete monitoring solution with Prometheus, Grafana, and alerting',
-    status: 'running',
-    uptime: 99.99,
-    architecture: 'Prometheus + Grafana + AlertManager + Loki',
-    techStack: ['Prometheus', 'Grafana', 'Loki', 'AlertManager', 'CloudWatch'],
-    metrics: [
-      { label: 'Metrics', value: '10K/s', icon: Gauge },
-      { label: 'Alerts', value: '50+', icon: Server },
-      { label: 'Uptime', value: '99.99%', icon: CheckCircle },
-    ],
-    demo: 'https://grafana.demo.com',
-  },
-  {
-    id: 'proj-6',
-    name: 'Automated Backup & DR',
-    description: 'Cross-region backup automation with disaster recovery testing',
-    status: 'deployed',
-    uptime: 100,
-    architecture: 'Lambda + S3 + RDS Snapshots + SNS',
-    techStack: ['AWS Lambda', 'S3', 'RDS', 'CloudWatch Events', 'SNS'],
-    metrics: [
-      { label: 'Backups', value: 'Daily', icon: Server },
-      { label: 'RPO', value: '1 hour', icon: Gauge },
-      { label: 'RTO', value: '4 hours', icon: CheckCircle },
-    ],
-    github: 'https://github.com',
-  },
-]
+const projects = resumeData.projects
 
 const statusColors = {
   running: 'text-status-success border-status-success',
@@ -131,10 +23,10 @@ export function ProjectsInProduction() {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">Services</span> in Production
+            <span className="glow-text">Portfolio</span> Projects
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Real-world infrastructure and automation projects running at scale
+            Personal projects demonstrating DevOps practices and automation skills
           </p>
         </motion.div>
 
@@ -149,28 +41,28 @@ export function ProjectsInProduction() {
             <div className="text-3xl font-bold text-neon-green font-mono mb-2">
               {projects.length}
             </div>
-            <div className="text-sm text-gray-400 uppercase">Active Services</div>
+            <div className="text-sm text-gray-400 uppercase">Active Projects</div>
           </div>
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-cyan font-mono mb-2">
-              99.9%
+              10+
             </div>
-            <div className="text-sm text-gray-400 uppercase">Avg Uptime</div>
+            <div className="text-sm text-gray-400 uppercase">Technologies</div>
           </div>
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-cyan font-mono mb-2">
-              2.8K
+              {resumeData.personal.stats.find(s => s.id === 'repos')?.value || projects.length}
             </div>
-            <div className="text-sm text-gray-400 uppercase">Total Deploys</div>
+            <div className="text-sm text-gray-400 uppercase">GitHub Repos</div>
           </div>
           
           <div className="card-devops text-center">
             <div className="text-3xl font-bold text-neon-green font-mono mb-2">
-              0
+              2.5
             </div>
-            <div className="text-sm text-gray-400 uppercase">Incidents</div>
+            <div className="text-sm text-gray-400 uppercase">Years Exp</div>
           </div>
         </motion.div>
 

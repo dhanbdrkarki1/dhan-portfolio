@@ -1,112 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Cloud, Container, GitBranch, Shield, Eye, Terminal, Server, Layers } from 'lucide-react'
+import { Award, ExternalLink, Server, GitBranch, Shield } from 'lucide-react'
 import { useState } from 'react'
+import { resumeData } from '@/data/resume'
 
-interface Skill {
-  id: string
-  name: string
-  category: 'cloud' | 'container' | 'cicd' | 'iac' | 'observability' | 'security'
-  icon: any
-  tools: string[]
-  impact: string
-  level: number
-  dependencies: string[]
-}
-
-const skills: Skill[] = [
-  {
-    id: 'aws',
-    name: 'AWS Cloud',
-    category: 'cloud',
-    icon: Cloud,
-    tools: ['EC2', 'ECS', 'EKS', 'Lambda', 'S3', 'RDS', 'VPC', 'CloudFront', 'Route53'],
-    impact: 'Reduced costs by 50-60% in dev, 30% in prod',
-    level: 95,
-    dependencies: ['terraform', 'kubernetes', 'cicd'],
-  },
-  {
-    id: 'azure',
-    name: 'Azure Cloud',
-    category: 'cloud',
-    icon: Cloud,
-    tools: ['AKS', 'VM', 'Storage', 'DevOps', 'Monitor'],
-    impact: 'Cross-cloud migration expertise',
-    level: 85,
-    dependencies: ['terraform', 'kubernetes'],
-  },
-  {
-    id: 'kubernetes',
-    name: 'Kubernetes',
-    category: 'container',
-    icon: Container,
-    tools: ['EKS', 'AKS', 'Helm', 'Kustomize', 'Karpenter', 'ArgoCD'],
-    impact: 'Zero-downtime deployments at scale',
-    level: 95,
-    dependencies: ['docker', 'terraform', 'observability'],
-  },
-  {
-    id: 'docker',
-    name: 'Docker',
-    category: 'container',
-    icon: Container,
-    tools: ['Docker', 'Docker Compose', 'Multi-stage builds', 'ECR'],
-    impact: 'Containerized 50+ applications',
-    level: 95,
-    dependencies: ['kubernetes', 'cicd'],
-  },
-  {
-    id: 'terraform',
-    name: 'Terraform',
-    category: 'iac',
-    icon: Layers,
-    tools: ['Terraform', 'Terragrunt', 'tfsec', 'CloudFormation'],
-    impact: 'Automated infrastructure provisioning',
-    level: 95,
-    dependencies: ['aws', 'azure', 'security'],
-  },
-  {
-    id: 'cicd',
-    name: 'CI/CD Pipelines',
-    category: 'cicd',
-    icon: GitBranch,
-    tools: ['GitHub Actions', 'Jenkins', 'CodePipeline', 'CodeBuild', 'CodeDeploy'],
-    impact: 'Reduced build time by 90%',
-    level: 95,
-    dependencies: ['docker', 'kubernetes', 'terraform'],
-  },
-  {
-    id: 'observability',
-    name: 'Observability',
-    category: 'observability',
-    icon: Eye,
-    tools: ['Prometheus', 'Grafana', 'CloudWatch', 'New Relic', 'ELK Stack'],
-    impact: 'Improved MTTR by 40%',
-    level: 90,
-    dependencies: ['kubernetes', 'aws'],
-  },
-  {
-    id: 'security',
-    name: 'Security & Compliance',
-    category: 'security',
-    icon: Shield,
-    tools: ['IAM', 'WAF', 'Inspector', 'GuardDuty', 'tfsec', 'Checkov', 'Trivy'],
-    impact: 'Zero security incidents',
-    level: 90,
-    dependencies: ['terraform', 'kubernetes', 'aws'],
-  },
-  {
-    id: 'automation',
-    name: 'Automation',
-    category: 'iac',
-    icon: Terminal,
-    tools: ['Python', 'Bash', 'Ansible', 'PowerShell'],
-    impact: 'Automated 100+ manual processes',
-    level: 90,
-    dependencies: ['terraform', 'cicd'],
-  },
-]
+const skills = resumeData.skills
+const certifications = resumeData.certifications
 
 const categoryColors = {
   cloud: 'border-neon-blue',
@@ -145,10 +45,10 @@ export function SkillsInfrastructure() {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">Infrastructure</span> as Code
+            <span className="glow-text">Technical</span> Skills
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Technical expertise visualized as interconnected cloud services and dependencies
+            DevOps expertise across cloud platforms, automation, and infrastructure management
           </p>
         </motion.div>
 
@@ -262,6 +162,50 @@ export function SkillsInfrastructure() {
           })}
         </div>
 
+        {/* Certifications Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-16"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            <span className="glow-text">Certifications</span> & Training
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certifications.map((cert, index) => (
+              <motion.a
+                key={cert.id}
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 + index * 0.1 }}
+                className="card-devops group hover:border-neon-cyan cursor-pointer transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-neon-cyan bg-opacity-10 rounded-lg border border-neon-cyan flex-shrink-0">
+                    <Award className="w-8 h-8 text-neon-cyan" />
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-lg mb-2 group-hover:text-neon-cyan transition-colors line-clamp-2">
+                      {cert.name}
+                    </h3>
+                    <p className="text-sm text-gray-400 mb-2">{cert.issuer}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono text-neon-green">{cert.year}</span>
+                      <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-neon-cyan transition-colors" />
+                    </div>
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Additional Expertise */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -276,25 +220,25 @@ export function SkillsInfrastructure() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <Server className="w-12 h-12 text-neon-cyan mx-auto mb-3" />
-              <h3 className="font-bold mb-2">High Availability</h3>
+              <h3 className="font-bold mb-2">Cost Optimization</h3>
               <p className="text-sm text-gray-400">
-                Multi-AZ deployments, load balancing, auto-scaling
+                Cloud cost reduction, rightsizing, lifecycle policies
               </p>
             </div>
             
             <div className="text-center">
               <GitBranch className="w-12 h-12 text-neon-green mx-auto mb-3" />
-              <h3 className="font-bold mb-2">GitOps</h3>
+              <h3 className="font-bold mb-2">Collaboration Tools</h3>
               <p className="text-sm text-gray-400">
-                Infrastructure as code, version-controlled deployments
+                Jira, Zoho, Slack, MS Teams, documentation
               </p>
             </div>
             
             <div className="text-center">
               <Shield className="w-12 h-12 text-status-error mx-auto mb-3" />
-              <h3 className="font-bold mb-2">Zero Trust Security</h3>
+              <h3 className="font-bold mb-2">Problem Solving</h3>
               <p className="text-sm text-gray-400">
-                IAM policies, network segmentation, compliance
+                Analytical thinking, troubleshooting, optimization
               </p>
             </div>
           </div>

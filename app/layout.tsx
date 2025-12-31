@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { PipelineNavigator } from '@/components/navigation/PipelineNavigator'
+import { ScrollController } from '@/components/navigation/ScrollController'
+import { KeyboardHints } from '@/components/ui/KeyboardHints'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -16,16 +18,16 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'DevOps Engineer Portfolio | Cloud Infrastructure & CI/CD Automation',
-  description: 'AWS-Certified DevOps Engineer specializing in cloud infrastructure, Kubernetes, Terraform, CI/CD pipelines, and cost optimization. Experience with AWS, Azure, Docker, EKS, GitHub Actions.',
-  keywords: ['DevOps', 'AWS', 'Azure', 'Kubernetes', 'Terraform', 'CI/CD', 'Docker', 'Cloud Engineer', 'Infrastructure as Code', 'Site Reliability'],
-  authors: [{ name: 'DevOps Engineer' }],
+  title: 'Dhan Bahadur Karki | DevOps Engineer Portfolio',
+  description: 'DevOps Engineer from Kathmandu, Nepal specializing in cloud infrastructure, Docker, Terraform, and CI/CD automation. Building scalable and efficient systems.',
+  keywords: ['DevOps', 'AWS', 'Docker', 'Terraform', 'CI/CD', 'Cloud Engineer', 'Nepal', 'Kathmandu', 'Dhan Bahadur Karki'],
+  authors: [{ name: 'Dhan Bahadur Karki' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'DevOps Engineer Portfolio',
-    description: 'Cloud infrastructure automation and CI/CD pipeline expert',
-    siteName: 'DevOps Portfolio',
+    title: 'Dhan Bahadur Karki | DevOps Engineer',
+    description: 'Cloud infrastructure automation and CI/CD specialist from Kathmandu',
+    siteName: 'Dhan Bahadur Karki Portfolio',
   },
   robots: {
     index: true,
@@ -50,6 +52,10 @@ export default function RootLayout({
           
           {/* Pipeline Navigator */}
           <PipelineNavigator />
+          
+          {/* Scroll & Keyboard Navigation */}
+          <ScrollController />
+          <KeyboardHints />
           
           {/* Main content */}
           <main className="relative z-10">

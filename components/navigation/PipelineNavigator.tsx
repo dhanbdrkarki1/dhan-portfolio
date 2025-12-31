@@ -2,32 +2,34 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Terminal, Boxes, Rocket, Play, Eye, Settings } from 'lucide-react'
+import { Terminal, Boxes, Rocket, Play, Settings } from 'lucide-react'
 
 const stages = [
   { id: 'init', label: 'Init', icon: Terminal, path: '/' },
   { id: 'build', label: 'Build', icon: Boxes, path: '/build' },
   { id: 'deploy', label: 'Deploy', icon: Rocket, path: '/deploy' },
   { id: 'run', label: 'Run', icon: Play, path: '/run' },
-  { id: 'observe', label: 'Observe', icon: Eye, path: '/observe' },
   { id: 'optimize', label: 'Optimize', icon: Settings, path: '/optimize' },
 ]
 
 export function PipelineNavigator() {
+  const pathname = usePathname()
   const [activeStage, setActiveStage] = useState('init')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    
-    // Detect current stage from pathname
-    const path = window.location.pathname
-    const stage = stages.find(s => s.path === path || path.startsWith(s.path + '/'))
+  }, [])
+
+  useEffect(() => {
+    // Update active stage whenever pathname changes
+    const stage = stages.find(s => s.path === pathname || pathname.startsWith(s.path + '/'))
     if (stage) {
       setActiveStage(stage.id)
     }
-  }, [])
+  }, [pathname])
 
   if (!mounted) return null
 
@@ -38,7 +40,7 @@ export function PipelineNavigator() {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Terminal className="w-6 h-6 text-neon-cyan" />
-            <span className="font-mono font-bold text-lg glow-text">DevOps.sys</span>
+            <span className="font-mono font-bold text-lg glow-text">Dhan.dev</span>
           </div>
 
           {/* Pipeline Stages */}
