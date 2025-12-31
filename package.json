@@ -1,7 +1,7 @@
 {
   "name": "devops-portfolio",
   "version": "1.0.0",
-  "description": "DevOps Engineer Portfolio - Interactive CI/CD Pipeline Experience",
+  "description": "DevOps Engineer Portfolio",
   "private": true,
   "scripts": {
     "dev": "next dev",
