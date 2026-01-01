@@ -113,10 +113,10 @@ export function Hero() {
                   View Experience
                 </a>
                 <a 
-                  href="/run" 
+                  href="/optimize" 
                   className="px-6 py-3 rounded-lg border border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-devops-bg transition-all duration-300 font-semibold"
                 >
-                  Explore Projects
+                  Contact Me
                 </a>
               </div>
             </div>
