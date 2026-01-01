@@ -38,10 +38,10 @@ export function PipelineNavigator() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Terminal className="w-6 h-6 text-neon-cyan" />
             <span className="font-mono font-bold text-lg glow-text">Dhan.dev</span>
-          </div>
+          </Link>
 
           {/* Pipeline Stages */}
           <div className="hidden md:flex items-center gap-1">
