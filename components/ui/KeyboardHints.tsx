@@ -18,7 +18,7 @@ export function KeyboardHints() {
       {/* Keyboard shortcuts button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 left-8 z-40 bg-devops-bg border border-devops-border hover:border-neon-cyan rounded-lg p-3 backdrop-blur-sm transition-all group"
+        className="hidden md:flex fixed bottom-8 left-8 z-40 bg-devops-bg border border-devops-border hover:border-neon-cyan rounded-lg p-3 backdrop-blur-sm transition-all group"
         title="Keyboard Shortcuts (?)"
       >
         <Keyboard className="w-5 h-5 text-gray-400 group-hover:text-neon-cyan transition-colors" />
