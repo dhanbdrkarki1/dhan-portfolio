@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Experience',
-  description: 'Professional experience as CI/CD pipeline executions and infrastructure evolution',
+  description: 'My professional journey in DevOps and cloud infrastructure',
 }
 
 export default function DeployPage() {

@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Production projects and infrastructure systems running at scale',
+  description: 'Production-grade projects and infrastructure I have built',
 }
 
 export default function RunPage() {

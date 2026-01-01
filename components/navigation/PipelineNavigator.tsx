@@ -57,7 +57,6 @@ export function PipelineNavigator() {
                     className={`pipeline-stage px-4 py-2 rounded-lg ${
                       isActive ? 'active bg-neon-cyan bg-opacity-10' : ''
                     } ${isCompleted ? 'completed' : 'text-gray-400'}`}
-                    onClick={() => setActiveStage(stage.id)}
                   >
                     <Icon className="w-4 h-4 inline mr-2" />
                     {stage.label}
@@ -80,7 +79,6 @@ export function PipelineNavigator() {
               onChange={(e) => {
                 const stage = stages.find(s => s.id === e.target.value)
                 if (stage) {
-                  setActiveStage(stage.id)
                   window.location.href = stage.path
                 }
               }}
