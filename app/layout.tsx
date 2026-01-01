@@ -4,6 +4,7 @@ import './globals.css'
 import { PipelineNavigator } from '@/components/navigation/PipelineNavigator'
 import { ScrollController } from '@/components/navigation/ScrollController'
 import { KeyboardHints } from '@/components/ui/KeyboardHints'
+import { CustomCursor } from '@/components/ui/CustomCursor'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -59,6 +60,9 @@ export default function RootLayout({
           {/* Scroll & Keyboard Navigation */}
           <ScrollController />
           <KeyboardHints />
+          
+          {/* Custom Cursor */}
+          <CustomCursor />
           
           {/* Main content */}
           <main className="relative z-10">

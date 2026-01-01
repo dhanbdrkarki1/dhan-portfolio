@@ -199,3 +199,112 @@
   background: rgba(0, 245, 255, 0.3);
   color: white;
 }
+
+/* ============================================
+   CUSTOM CURSOR SYSTEM
+   ============================================ */
+
+/* Hide default cursor on desktop */
+@media (min-width: 768px) and (hover: hover) {
+  body:not(.disable-custom-cursor) {
+    cursor: none !important;
+  }
+  
+  body:not(.disable-custom-cursor) *,
+  body:not(.disable-custom-cursor) a,
+  body:not(.disable-custom-cursor) button,
+  body:not(.disable-custom-cursor) input,
+  body:not(.disable-custom-cursor) textarea {
+    cursor: none !important;
+  }
+}
+
+/* Cursor Dot - Precise tracking point */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--neon-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  box-shadow: 
+    0 0 10px var(--neon-cyan),
+    0 0 20px rgba(0, 245, 255, 0.5);
+  will-change: transform;
+}
+
+/* Cursor Ring - Lagging telemetry ring */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: border-color 0.3s ease;
+  box-shadow: 
+    0 0 20px rgba(0, 245, 255, 0.3),
+    inset 0 0 20px rgba(0, 245, 255, 0.1);
+  will-change: transform, opacity, scale;
+}
+
+/* Ring hover state - changes to blue */
+.cursor-ring[data-hovering="true"] {
+  border-color: var(--neon-blue);
+  box-shadow: 
+    0 0 30px rgba(14, 165, 233, 0.5),
+    inset 0 0 20px rgba(14, 165, 233, 0.2);
+}
+
+/* Click Ripple Effect */
+.cursor-ripple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+/* Disable cursor effects for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    cursor: auto !important;
+  }
+  
+  body *,
+  body a,
+  body button {
+    cursor: auto !important;
+  }
+  
+  .cursor-dot,
+  .cursor-ring,
+  .cursor-ripple {
+    display: none !important;
+  }
+}
+
+/* Disable on touch devices */
+@media (hover: none) {
+  .cursor-dot,
+  .cursor-ring,
+  .cursor-ripple {
+    display: none !important;
+  }
+}
+
