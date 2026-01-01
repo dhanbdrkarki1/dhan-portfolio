@@ -63,7 +63,7 @@ export function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 pt-32 md:pt-16">
+    <section className="relative min-h-screen flex items-center justify-center px-4 pt-32 md:pt-16 pb-16 md:pb-0">
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Hero Content */}
