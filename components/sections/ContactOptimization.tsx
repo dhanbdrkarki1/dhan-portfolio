@@ -5,6 +5,7 @@ import { Mail, Linkedin, Github, FileText, Terminal, Send } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import { resumeData } from '@/data/resume'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 const { personal, services } = resumeData
 
@@ -77,26 +78,20 @@ export function ContactOptimization() {
     <section className="min-h-screen py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">System</span> Optimization
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Ready to optimize your infrastructure? Let's discuss how we can scale your systems.
-          </p>
-        </motion.div>
+        <ScrollReveal direction="up" duration={0.6}>
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="glow-text">System</span> Optimization
+            </h1>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Ready to optimize your infrastructure? Let's discuss how we can scale your systems.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left: Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
+          <ScrollReveal direction="left" delay={0.2} duration={0.7}>
             <div className="card-devops">
               <div className="flex items-center gap-2 mb-6 pb-4 border-b border-devops-border">
                 <Terminal className="w-5 h-5 text-neon-cyan" />
@@ -225,19 +220,15 @@ export function ContactOptimization() {
                 </div>
               )}
             </div>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Right: Contact Info & Links */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-6"
-          >
-            {/* Quick Contact */}
-            <div className="card-devops">
-              <h3 className="text-xl font-bold mb-4">Quick Connect</h3>
-              <div className="space-y-3">
+          <ScrollReveal direction="right" delay={0.3} duration={0.7}>
+            <div className="space-y-6">
+              {/* Quick Contact */}
+              <div className="card-devops">
+                <h3 className="text-xl font-bold mb-4">Quick Connect</h3>
+                <div className="space-y-3">
                 {personal.socialLinks.map((link) => {
                   const IconComponent = 
                     link.icon === 'mail' ? Mail :
@@ -292,7 +283,8 @@ export function ContactOptimization() {
                 Response time: <span className="text-neon-cyan font-mono">{"<"} 24 hours</span>
               </p>
             </div>
-          </motion.div>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

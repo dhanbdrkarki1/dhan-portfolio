@@ -5,6 +5,7 @@ import { TerminalLogger } from '@/components/ui/TerminalLogger'
 import { CheckCircle2 } from 'lucide-react'
 import { useState } from 'react'
 import { resumeData } from '@/data/resume'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 const experiences = resumeData.experiences
 
@@ -37,35 +38,34 @@ export function ExperienceTimeline() {
     <section className="min-h-screen py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">Deployment</span> History
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Professional experience as CI/CD pipeline executions and infrastructure evolution
-          </p>
-        </motion.div>
+        <ScrollReveal direction="up">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="glow-text">Deployment</span> History
+            </h1>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Professional experience as CI/CD pipeline executions and infrastructure evolution
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Timeline Sidebar */}
           <div className="lg:col-span-1 space-y-4">
             {experiences.map((exp, index) => (
-              <motion.div
+              <ScrollReveal
                 key={exp.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                onClick={() => setSelectedExp(exp.id)}
-                className={`card-devops cursor-pointer transition-all duration-300 ${
-                  selectedExp === exp.id
-                    ? 'border-neon-cyan scale-105'
-                    : 'hover:border-gray-500'
-                }`}
+                direction="left"
+                delay={index * 0.05}
               >
+                <div
+                  onClick={() => setSelectedExp(exp.id)}
+                  className={`card-devops cursor-pointer transition-all duration-300 ${
+                    selectedExp === exp.id
+                      ? 'border-neon-cyan scale-105'
+                      : 'hover:border-gray-500'
+                  }`}
+                >
                 {/* Commit Header */}
                 <div className="flex items-center gap-2 mb-3 pb-3 border-b border-devops-border">
                   <span className={`px-2 py-1 rounded text-xs font-mono ${typeColors[exp.type]} border`}>
@@ -93,7 +93,8 @@ export function ExperienceTimeline() {
                     <span>{exp.achievements.length} key achievements</span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
+              </ScrollReveal>
             ))}
           </div>
 

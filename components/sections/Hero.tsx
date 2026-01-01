@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Terminal, Server, Cloud, Zap, MapPin, Clock, Award } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { resumeData } from '@/data/resume'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 const { personal, terminalCommands } = resumeData
 
@@ -122,57 +123,54 @@ export function Hero() {
           </motion.div>
 
           {/* Right: Stats & Terminal */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="space-y-6"
-          >
-            {/* Portfolio Stats */}
-            <div className="card-devops space-y-3">
-              <h3 className="font-mono text-sm uppercase tracking-wider text-neon-cyan">
-                Portfolio Overview
-              </h3>
+          <ScrollReveal direction="left" delay={0.3}>
+            <div className="space-y-6">
+              {/* Portfolio Stats */}
+              <div className="card-devops space-y-3">
+                <h3 className="font-mono text-sm uppercase tracking-wider text-neon-cyan">
+                  Portfolio Overview
+                </h3>
               
-              <div className="space-y-2 text-sm">
-                {personal.stats.map((stat) => (
-                  <StatItem 
-                    key={stat.id}
-                    icon={stat.icon} 
-                    label={stat.label} 
-                    value={String(stat.value)} 
-                    color={stat.color || 'text-neon-cyan'} 
-                  />
-                ))}
+                <div className="space-y-2 text-sm">
+                  {personal.stats.map((stat) => (
+                    <StatItem 
+                      key={stat.id}
+                      icon={stat.icon} 
+                      label={stat.label} 
+                      value={String(stat.value)} 
+                      color={stat.color || 'text-neon-cyan'} 
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Interactive Terminal */}
-            <div className="card-devops">
-              <h3 className="font-mono text-sm uppercase tracking-wider text-neon-cyan mb-3">
-                Interactive Terminal
-              </h3>
-              
-              <div className="bg-devops-bg rounded border border-devops-border p-3 font-mono text-xs max-h-40 overflow-y-auto">
-                {terminalOutput.map((line, idx) => (
-                  <div key={idx} className={line.startsWith('$') ? 'text-neon-green mt-2' : 'text-gray-400'}>
-                    {line}
+              {/* Interactive Terminal */}
+              <div className="card-devops">
+                <h3 className="font-mono text-sm uppercase tracking-wider text-neon-cyan mb-3">
+                  Interactive Terminal
+                </h3>
+                
+                <div className="bg-devops-bg rounded border border-devops-border p-3 font-mono text-xs max-h-40 overflow-y-auto">
+                  {terminalOutput.map((line, idx) => (
+                    <div key={idx} className={line.startsWith('$') ? 'text-neon-green mt-2' : 'text-gray-400'}>
+                      {line}
+                    </div>
+                  ))}
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="text-neon-green">$</span>
+                    <input
+                      type="text"
+                      value={terminalInput}
+                      onChange={(e) => setTerminalInput(e.target.value)}
+                      onKeyDown={handleTerminalCommand}
+                      className="flex-1 bg-transparent outline-none text-gray-300"
+                      placeholder="Type a command..."
+                    />
                   </div>
-                ))}
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="text-neon-green">$</span>
-                  <input
-                    type="text"
-                    value={terminalInput}
-                    onChange={(e) => setTerminalInput(e.target.value)}
-                    onKeyDown={handleTerminalCommand}
-                    className="flex-1 bg-transparent outline-none text-gray-300"
-                    placeholder="Type a command..."
-                  />
                 </div>
               </div>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

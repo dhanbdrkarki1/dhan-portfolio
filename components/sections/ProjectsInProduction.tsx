@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Github, ExternalLink } from 'lucide-react'
 import { resumeData } from '@/data/resume'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 const projects = resumeData.projects
 
@@ -17,18 +18,16 @@ export function ProjectsInProduction() {
     <section className="min-h-screen py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">Portfolio</span> Projects
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Personal projects demonstrating DevOps practices and automation skills
-          </p>
-        </motion.div>
+        <ScrollReveal direction="up">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="glow-text">Portfolio</span> Projects
+            </h1>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Personal projects demonstrating DevOps practices and automation skills
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* System Status Overview */}
         <motion.div
@@ -69,13 +68,12 @@ export function ProjectsInProduction() {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <motion.div
+            <ScrollReveal
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-              className="card-devops group"
+              direction="up"
+              delay={index * 0.05}
             >
+              <div className="card-devops group h-full">
               {/* Status Header */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
@@ -167,7 +165,8 @@ export function ProjectsInProduction() {
                   </a>
                 )}
               </div>
-            </motion.div>
+            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

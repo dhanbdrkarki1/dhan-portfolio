@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Award, ExternalLink, Server, GitBranch, Shield } from 'lucide-react'
 import { useState } from 'react'
 import { resumeData } from '@/data/resume'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 const skills = resumeData.skills
 const certifications = resumeData.certifications
@@ -39,18 +40,16 @@ export function SkillsInfrastructure() {
     <section className="min-h-screen py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="glow-text">Technical</span> Skills
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            DevOps expertise across cloud platforms, automation, and infrastructure management
-          </p>
-        </motion.div>
+        <ScrollReveal direction="up">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="glow-text">Technical</span> Skills
+            </h1>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              DevOps expertise across cloud platforms, automation, and infrastructure management
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Category Filter */}
         <motion.div
@@ -84,19 +83,20 @@ export function SkillsInfrastructure() {
                skills.find(s => s.id === hoveredSkill)?.dependencies.includes(skill.id))
 
             return (
-              <motion.div
+              <ScrollReveal
                 key={skill.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                onHoverStart={() => setHoveredSkill(skill.id)}
-                onHoverEnd={() => setHoveredSkill(null)}
-                className={`card-devops cursor-pointer transition-all duration-300 ${
-                  isHovered ? 'scale-105 z-10' : ''
-                } ${
-                  isConnected ? 'border-neon-cyan' : categoryColors[skill.category]
-                }`}
+                direction="up"
+                delay={index * 0.05}
               >
+                <motion.div
+                  onHoverStart={() => setHoveredSkill(skill.id)}
+                  onHoverEnd={() => setHoveredSkill(null)}
+                  className={`card-devops cursor-pointer transition-all duration-300 ${
+                    isHovered ? 'scale-105 z-10' : ''
+                  } ${
+                    isConnected ? 'border-neon-cyan' : categoryColors[skill.category]
+                  }`}
+                >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
@@ -158,91 +158,88 @@ export function SkillsInfrastructure() {
                   </div>
                 )}
               </motion.div>
+              </ScrollReveal>
             )
           })}
         </div>
 
         {/* Certifications Section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="mt-16"
-        >
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            <span className="glow-text">Certifications</span> & Training
-          </h2>
+        <div className="mt-16">
+          <ScrollReveal direction="up" delay={0.1}>
+            <h2 className="text-3xl font-bold mb-8 text-center">
+              <span className="glow-text">Certifications</span> & Training
+            </h2>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
-              <motion.a
+              <ScrollReveal
                 key={cert.id}
-                href={cert.credentialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + index * 0.1 }}
-                className="card-devops group hover:border-neon-cyan cursor-pointer transition-all duration-300"
+                direction="scale"
+                delay={index * 0.1}
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-neon-cyan bg-opacity-10 rounded-lg border border-neon-cyan flex-shrink-0">
-                    <Award className="w-8 h-8 text-neon-cyan" />
-                  </div>
-                  
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-lg mb-2 group-hover:text-neon-cyan transition-colors line-clamp-2">
-                      {cert.name}
-                    </h3>
-                    <p className="text-sm text-gray-400 mb-2">{cert.issuer}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono text-neon-green">{cert.year}</span>
-                      <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-neon-cyan transition-colors" />
+                <a
+                  href={cert.credentialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-devops group hover:border-neon-cyan cursor-pointer transition-all duration-300 h-full block"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-neon-cyan bg-opacity-10 rounded-lg border border-neon-cyan flex-shrink-0">
+                      <Award className="w-8 h-8 text-neon-cyan" />
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-lg mb-2 group-hover:text-neon-cyan transition-colors line-clamp-2">
+                        {cert.name}
+                      </h3>
+                      <p className="text-sm text-gray-400 mb-2">{cert.issuer}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-mono text-neon-green">{cert.year}</span>
+                        <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-neon-cyan transition-colors" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.a>
+                </a>
+              </ScrollReveal>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Additional Expertise */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-16 card-devops"
-        >
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            <span className="glow-text">Additional</span> Expertise
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <Server className="w-12 h-12 text-neon-cyan mx-auto mb-3" />
-              <h3 className="font-bold mb-2">Cost Optimization</h3>
-              <p className="text-sm text-gray-400">
-                Cloud cost reduction, rightsizing, lifecycle policies
-              </p>
-            </div>
+        <ScrollReveal direction="up" delay={0.2}>
+          <div className="mt-16 card-devops">
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              <span className="glow-text">Additional</span> Expertise
+            </h2>
             
-            <div className="text-center">
-              <GitBranch className="w-12 h-12 text-neon-green mx-auto mb-3" />
-              <h3 className="font-bold mb-2">Collaboration Tools</h3>
-              <p className="text-sm text-gray-400">
-                Jira, Zoho, Slack, MS Teams, documentation
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <Shield className="w-12 h-12 text-status-error mx-auto mb-3" />
-              <h3 className="font-bold mb-2">Problem Solving</h3>
-              <p className="text-sm text-gray-400">
-                Analytical thinking, troubleshooting, optimization
-              </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <Server className="w-12 h-12 text-neon-cyan mx-auto mb-3" />
+                <h3 className="font-bold mb-2">Cost Optimization</h3>
+                <p className="text-sm text-gray-400">
+                  Cloud cost reduction, rightsizing, lifecycle policies
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <GitBranch className="w-12 h-12 text-neon-green mx-auto mb-3" />
+                <h3 className="font-bold mb-2">Collaboration Tools</h3>
+                <p className="text-sm text-gray-400">
+                  Jira, Zoho, Slack, MS Teams, documentation
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <Shield className="w-12 h-12 text-status-error mx-auto mb-3" />
+                <h3 className="font-bold mb-2">Problem Solving</h3>
+                <p className="text-sm text-gray-400">
+                  Analytical thinking, troubleshooting, optimization
+                </p>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   )
