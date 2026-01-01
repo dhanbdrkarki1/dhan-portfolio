@@ -13,13 +13,13 @@
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run development server
-npm run dev
+pnpm dev
 
 # Build for production
-npm run build
+pnpm build
 ```
 
 Built with ❤️ by Dhan Bahadur Karki
