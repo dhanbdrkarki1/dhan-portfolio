@@ -41,7 +41,7 @@ export function PipelineNavigator() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Terminal className="w-6 h-6 text-neon-cyan" />
-            <span className="font-mono font-bold text-lg glow-text">Dhan.dev</span>
+            <span className="fgont-mono font-bold text-lg glow-text">Dhan.dev</span>
           </Link>
 
           {/* Pipeline Stages */}
