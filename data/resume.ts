@@ -117,6 +117,7 @@ export const resumeData = {
     name: 'Dhan Bahadur Karki',
     roles: [
       'DevOps Engineer',
+      'Certified Kubernetes Administrator (CKA)',
       'Cloud Infrastructure Specialist',
       'CI/CD Automation Expert',
       'Infrastructure as Code Developer',
@@ -173,7 +174,7 @@ export const resumeData = {
       {
         id: 'certifications',
         label: 'Certifications',
-        value: 5,
+        value: 6,
         icon: Award,
         color: 'text-neon-green',
       },
@@ -227,7 +228,7 @@ export const resumeData = {
           icon: TrendingUp,
         },
         {
-          text: 'Deployed and managed AWS EKS using Helm, Kustomize, Karpenter with Prometheus/Grafana monitoring',
+          text: 'Deployed and managed AWS EKS using Helm, Kustomize, Karpenter with Prometheus/Grafana monitoring; executed cluster upgrades via blue/green strategy, node upgrades, and managed addons with minimal downtime',
           metric: 'Zero downtime',
           icon: CheckCircle2,
         },
@@ -506,6 +507,14 @@ export const resumeData = {
   certifications: [
     {
       id: 'cert-1',
+      name: 'Certified Kubernetes Administrator (CKA)',
+      issuer: 'The Linux Foundation (CNCF)',
+      year: 2026,
+      credentialUrl: 'https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/73c1ee2d-7c40-4f8d-a625-cb9271feec15-dhan-karki-8d2e1110-1a85-45f9-a479-e4bf78ef2cfa-certificate.pdf',
+      category: 'devops',
+    },
+    {
+      id: 'cert-2',
       name: 'AWS Certified Solutions Architect – Associate',
       issuer: 'Amazon Web Services',
       year: 2024,
@@ -513,7 +522,7 @@ export const resumeData = {
       category: 'cloud',
     },
     {
-      id: 'cert-2',
+      id: 'cert-3',
       name: 'Full Stack Observability Practitioner',
       issuer: 'New Relic University',
       year: 2024,
@@ -521,7 +530,7 @@ export const resumeData = {
       category: 'monitoring',
     },
     {
-      id: 'cert-3',
+      id: 'cert-4',
       name: 'AWS Academy Graduate - Cloud Foundations',
       issuer: 'Amazon Web Services',
       year: 2023,
@@ -529,7 +538,7 @@ export const resumeData = {
       category: 'cloud',
     },
     {
-      id: 'cert-4',
+      id: 'cert-5',
       name: 'Introduction to Containers w/ Docker, Kubernetes & OpenShift',
       issuer: 'IBM Skills Network',
       year: 2023,
@@ -537,7 +546,7 @@ export const resumeData = {
       category: 'devops',
     },
     {
-      id: 'cert-5',
+      id: 'cert-6',
       name: 'Continuous Integration and Continuous Delivery (CI/CD)',
       issuer: 'IBM Skills Network',
       year: 2023,
